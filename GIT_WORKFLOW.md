@@ -74,15 +74,17 @@
 <h3>🔹 DevOps Engineer Workflow (devops branch)</h3>
 <p>Switch to devops branch</p>
 <pre>
-Switch to devops branch
 git checkout devops
+</pre>
+<p>Pull latest changes (important)</p>
+<pre>
+git pull origin devops</pre>
 
-Pull latest changes (important)
-git pull origin devops
-
+<p>
 Work on DevOps files
-(jenkins/, kubernetes/, monitoring/, etc.)
+(jenkins/, kubernetes/, monitoring/, etc.)</p>
 
+<pre>
 git add .
 git commit -m "Add Jenkins pipeline and Prometheus setup"
 git push origin devops
