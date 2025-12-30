@@ -193,6 +193,9 @@ git push origin main
 <li>❌ Work in someone else's branch</li>
 </ul>
 
+<p><strong>🔒 Repository Rulesets Enforced:</strong> Only the repository admin can push to main branch or merge code from any branch to main.</p>
+
+
 <h2>✅ SAFE RULE (REMEMBER THIS)</h2>
 <p><strong>One person → One branch → One responsibility</strong></p>
 
