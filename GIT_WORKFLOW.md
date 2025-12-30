@@ -72,6 +72,7 @@
 <p>Each member works ONLY on their own branch.</p>
 
 <h3>🔹 DevOps Engineer Workflow (devops branch)</h3>
+<p>Switch to devops branch</p>
 <pre>
 Switch to devops branch
 git checkout devops
