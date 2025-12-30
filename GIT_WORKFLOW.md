@@ -25,6 +25,7 @@
 <tr>
 <th>Branch Name</th>
 <th>Owner</th>
+<th>Member</th>
 <th>Purpose</th>
 </tr>
 </thead>
@@ -32,11 +33,13 @@
 <tr>
 <td>main</td>
 <td>DevOps Lead (Admin)</td>
+<td>Sriram</td>
 <td>Final integrated & stable code</td>
 </tr>
 <tr>
 <td>devops</td>
 <td>DevOps Engineer</td>
+<td>Sriram</td>
 <td>CI/CD, Kubernetes, Monitoring</td>
 </tr>
 <tr>
