@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git Branch Workflow - CloudGuard AI</title>
 </head>
 <body>
 
@@ -73,14 +74,14 @@
 
 <h3>🔹 DevOps Engineer Workflow (devops branch)</h3>
 <pre>
-# Switch to devops branch
+Switch to devops branch
 git checkout devops
 
-# Pull latest changes (important)
+Pull latest changes (important)
 git pull origin devops
 
-# Work on DevOps files
-# (jenkins/, kubernetes/, monitoring/, etc.)
+Work on DevOps files
+(jenkins/, kubernetes/, monitoring/, etc.)
 
 git add .
 git commit -m "Add Jenkins pipeline and Prometheus setup"
@@ -95,8 +96,8 @@ git push origin devops
 git checkout cloud-security
 git pull origin cloud-security
 
-# Work on cloud-security/
-# (Lambda, AWS Config rules, scripts)
+Work on cloud-security/
+(Lambda, AWS Config rules, scripts)
 
 git add .
 git commit -m "Add S3 public access auto-remediation"
@@ -108,8 +109,8 @@ git push origin cloud-security
 git checkout ml-engine
 git pull origin ml-engine
 
-# Work on ml-engine/
-# (preprocessing, models, APIs)
+Work on ml-engine/
+(preprocessing, models, APIs)
 
 git add .
 git commit -m "Add anomaly detection model"
@@ -121,7 +122,7 @@ git push origin ml-engine
 git checkout mern-app
 git pull origin mern-app
 
-# Work on mern-app/frontend or backend
+Work on mern-app/frontend or backend
 
 git add .
 git commit -m "Add login and dashboard UI"
@@ -140,11 +141,11 @@ git push origin mern-app
 <p>From main branch, push structure to all branches:</p>
 
 <pre>
-# Ensure you're on main
+Ensure you're on main
 git checkout main
 git pull origin main
 
-# For each branch
+For each branch
 git checkout devops
 git merge main
 git push origin devops
