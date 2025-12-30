@@ -95,96 +95,6 @@ Mirror real enterprise hybrid cloud setups.</p>
 
 <hr>
 
-<h2>✅ PHASE-WISE TASK CHECKLIST (VERY IMPORTANT)</h2>
-<p>Each member must only work when their phase starts.<br>
-No overlapping chaos.</p>
-
-<h3>🟦 PHASE 1 — Planning & Architecture</h3>
-<p><strong>Owner:</strong> DevOps Lead (You)</p>
-<p><strong>Tasks</strong></p>
-<ul>
-<li>☐ Finalize architecture diagram</li>
-<li>☐ Define API contracts</li>
-<li>☐ Create GitHub repo</li>
-<li>☐ Create branches for all members</li>
-<li>☐ Freeze tool stack</li>
-<li>☐ Define phase boundaries</li>
-</ul>
-<p>✅ Phase ends when documentation is ready</p>
-
-<h3>🟩 PHASE 2 — Cloud Security</h3>
-<p><strong>Owner:</strong> Cloud Security Engineer</p>
-<p><strong>Tasks</strong></p>
-<ul>
-<li>☐ Enable CloudTrail (all regions)</li>
-<li>☐ Setup AWS Config</li>
-<li>☐ Define misconfiguration rules</li>
-<li>☐ Write Lambda remediation scripts</li>
-<li>☐ Configure SNS alerts</li>
-<li>☐ Implement IAM governance</li>
-<li>☐ Test security violations</li>
-</ul>
-<p>✅ Phase ends when auto-remediation is proven</p>
-
-<h3>🟨 PHASE 3 — DevOps Automation</h3>
-<p><strong>Owner:</strong> You</p>
-<p><strong>Tasks</strong></p>
-<ul>
-<li>☐ Setup Jenkins in Docker</li>
-<li>☐ Configure GitHub webhooks</li>
-<li>☐ Build CI pipeline</li>
-<li>☐ Build CD pipeline</li>
-<li>☐ Create Kubernetes cluster (KIND)</li>
-<li>☐ Deploy services</li>
-<li>☐ Setup Prometheus & Grafana</li>
-<li>☐ Configure alerts</li>
-</ul>
-<p>✅ Phase ends when deployments are automated</p>
-
-<h3>🟧 PHASE 4 — ML Intelligence</h3>
-<p><strong>Owner:</strong> ML Engineer</p>
-<p><strong>Tasks</strong></p>
-<ul>
-<li>☐ Collect sample security logs</li>
-<li>☐ Collect DevOps metrics</li>
-<li>☐ Preprocess data</li>
-<li>☐ Implement anomaly detection</li>
-<li>☐ Generate risk scores</li>
-<li>☐ Expose ML results via API</li>
-<li>☐ Validate output</li>
-</ul>
-<p>✅ Phase ends when ML insights are visible</p>
-
-<h3>🟥 PHASE 5 — MERN Application</h3>
-<p><strong>Owner:</strong> MERN Stack Developer</p>
-<p><strong>Tasks</strong></p>
-<ul>
-<li>☐ Design UI wireframes</li>
-<li>☐ Implement login & JWT auth</li>
-<li>☐ Build dashboard pages</li>
-<li>☐ Connect backend APIs</li>
-<li>☐ Integrate ML results</li>
-<li>☐ Integrate security alerts</li>
-<li>☐ Store data in MongoDB</li>
-</ul>
-<p>✅ Phase ends when dashboard is usable</p>
-
-<h3>🟪 PHASE 6 — Integration & Testing</h3>
-<p><strong>Owner:</strong> All (DevOps lead)</p>
-<p><strong>Tasks</strong></p>
-<ul>
-<li>☐ End-to-end flow testing</li>
-<li>☐ Trigger security incidents</li>
-<li>☐ Verify remediation</li>
-<li>☐ Validate ML alerts</li>
-<li>☐ Capture screenshots</li>
-<li>☐ Final documentation</li>
-<li>☐ Merge all branches to main</li>
-</ul>
-<p>✅ Phase ends when everything works together</p>
-
-<hr>
-
 <h2>🎓 VIVA QUESTIONS & ANSWERS (WHO ANSWERS WHAT)</h2>
 <p>These are REAL questions you will face.</p>
 
@@ -249,13 +159,6 @@ Using JWT tokens with role-based access control to ensure secure access.</p>
 
 <hr>
 
-<h2>✅ WHAT YOU HAVE NOW</h2>
-<ul>
-<li>✔ Final README</li>
-<li>✔ Architecture explanation</li>
-<li>✔ Phase-wise checklist</li>
-<li>✔ Viva Q&A</li>
-</ul>
 
 <p><strong>This is COMPLETE.</strong></p>
 
