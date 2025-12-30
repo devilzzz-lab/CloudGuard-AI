@@ -74,15 +74,17 @@
 <h3>🔹 DevOps Engineer Workflow (devops branch)</h3>
 <p>Switch to devops branch</p>
 <pre>
-Switch to devops branch
 git checkout devops
+</pre>
+<p>Pull latest changes (important)</p>
+<pre>
+git pull origin devops</pre>
 
-Pull latest changes (important)
-git pull origin devops
-
+<p>
 Work on DevOps files
-(jenkins/, kubernetes/, monitoring/, etc.)
+(jenkins/, kubernetes/, monitoring/, etc.)</p>
 
+<pre>
 git add .
 git commit -m "Add Jenkins pipeline and Prometheus setup"
 git push origin devops
@@ -92,13 +94,17 @@ git push origin devops
 ✅ Never work on other branches</p>
 
 <h3>🔹 Cloud Security Engineer Workflow (cloud-security branch)</h3>
+<p>Switch to cloud-security branch</p>
 <pre>
-git checkout cloud-security
-git pull origin cloud-security
+git checkout cloud-security</pre>
+<p>Pull latest changes (important)</p>
+<pre>git pull origin cloud-security</pre>
 
+<p>
 Work on cloud-security/
-(Lambda, AWS Config rules, scripts)
+(Lambda, AWS Config rules, scripts)</p>
 
+<pre>
 git add .
 git commit -m "Add S3 public access auto-remediation"
 git push origin cloud-security
@@ -108,10 +114,13 @@ git push origin cloud-security
 <pre>
 git checkout ml-engine
 git pull origin ml-engine
+</pre>
 
+<p>
 Work on ml-engine/
-(preprocessing, models, APIs)
+(preprocessing, models, APIs)</p>
 
+<pre>
 git add .
 git commit -m "Add anomaly detection model"
 git push origin ml-engine
@@ -121,9 +130,11 @@ git push origin ml-engine
 <pre>
 git checkout mern-app
 git pull origin mern-app
+</pre>
 
-Work on mern-app/frontend or backend
+<p>Work on mern-app/frontend or backend</p>
 
+<pre>
 git add .
 git commit -m "Add login and dashboard UI"
 git push origin mern-app
