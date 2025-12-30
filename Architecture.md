@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CloudGuard AI - Architecture & Documentation</title>
 </head>
 <body>
 
@@ -14,7 +13,7 @@
 <h2>🔹 High-Level Architecture Explanation</h2>
 <p>CloudGuard AI follows a modular, hybrid architecture where each component is independently developed and integrated through APIs, similar to real enterprise platforms.</p>
 
-<img src="MERN-Dashboard-Cloud-DevOps-2025-12-30-171021.jpg" alt="CloudGuard AI Architecture Diagram" width="100%">
+<img src="/diagrams/system-architecture.png" alt="CloudGuard AI Architecture Diagram" width="100%">
 
 <p>The architecture is divided into four logical layers:</p>
 
