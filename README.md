@@ -56,22 +56,7 @@
 <p>This mirrors real SOC / NOC enterprise environments.</p>
 
 <h2>🧩 System Architecture (High Level)</h2>
-<pre>
-User
- ↓
-MERN Dashboard (React + Node + MongoDB)
- ↓
------------------------------------------
-|           Backend APIs                 |
------------------------------------------
- ↓            ↓               ↓
-ML Engine   DevOps Metrics   Cloud Security
-(Python)   (Prometheus)     (AWS Config)
- ↓            ↓               ↓
-Kubernetes Cluster        AWS Infrastructure
- ↓
-CI/CD Automation (Jenkins)
-</pre>
+<img src="/diagrams/system-architecture.png" alt="CloudGuard AI Architecture Diagram" width="100%">
 
 <h2>👥 Team Composition & Responsibilities</h2>
 <table>
