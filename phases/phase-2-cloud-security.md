@@ -1,6 +1,6 @@
 🟩 PHASE 2 — Cloud Security Foundation
 
-Owner: You (Cloud Security Engineer)
+Owner: Vikas (Cloud Security Engineer)
 Branch: cloud-security
 
 🎯 Phase 2 Goal (Your Mission)
