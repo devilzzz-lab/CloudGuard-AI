@@ -69,22 +69,22 @@
 </thead>
 <tbody>
 <tr>
-<td>You</td>
+<td>Sriram</td>
 <td>DevOps Engineer</td>
 <td>CI/CD, Kubernetes, Monitoring, Integration</td>
 </tr>
 <tr>
-<td>Friend 1</td>
+<td>Thilakpriyan</td>
 <td>ML Engineer</td>
 <td>Log & metric analysis, anomaly detection</td>
 </tr>
 <tr>
-<td>Friend 2</td>
+<td>Vikas</td>
 <td>Cloud Security Engineer</td>
 <td>AWS misconfiguration detection & remediation</td>
 </tr>
 <tr>
-<td>Friend 3</td>
+<td>Srimathi</td>
 <td>MERN Stack Developer</td>
 <td>Dashboard UI, backend APIs, authentication</td>
 </tr>
@@ -138,28 +138,34 @@ CloudGuard-AI/
 <tr>
 <th>Branch</th>
 <th>Owner</th>
+<th>Name
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>main</td>
 <td>You (Final integration & delivery)</td>
+<td>Sriram
 </tr>
 <tr>
 <td>devops</td>
 <td>DevOps work</td>
+<td>Sriram
 </tr>
 <tr>
 <td>cloud-security</td>
 <td>Security work</td>
+<td>Vikas
 </tr>
 <tr>
 <td>ml-engine</td>
 <td>ML work</td>
+<td>Thilakpriyan
 </tr>
 <tr>
 <td>mern-app</td>
 <td>MERN work</td>
+<td>Srimathi
 </tr>
 </tbody>
 </table>
