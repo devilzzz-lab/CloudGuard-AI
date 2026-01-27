@@ -381,7 +381,7 @@ CloudGuard-AI/
 <tr>
 <td>Phase 1 - Architecture</td>
 <td>✅ Complete</td>
-<td>phases/phase-1-architecture.md</td>
+<td><a href="Architecture.md">Architecture.md</a></td>
 </tr>
 <tr>
 <td>Phase 2 - Cloud Security</td>
