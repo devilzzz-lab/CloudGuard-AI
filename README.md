@@ -173,6 +173,9 @@ CloudGuard-AI/
 </tbody>
 </table>
 
+
+<p>Github Team Work Flow <a href="GIT_WORKFLOW.md">Github Team Work Flow</a> for full documentation</p>
+
 <p>👉 All features are merged only after a phase is completed.</p>
 
 <h2>🧩 PHASE-WISE IMPLEMENTATION (CORE OF PROJECT)</h2>
@@ -195,7 +198,7 @@ CloudGuard-AI/
 <li>Repo structure</li>
 </ul>
 
-<p>✅ Phase completed</p>
+<p>✅ Phase completed - See <a href="Architecture.md">Architecture</a> for full documentation</p>
 
 <h3>🟩 PHASE 2 — Cloud Security Foundation ✅ COMPLETED</h3>
 <p><strong>Owner:</strong> Cloud Security Engineer (Vikas)</p>
@@ -381,7 +384,7 @@ CloudGuard-AI/
 <tr>
 <td>Phase 1 - Architecture</td>
 <td>✅ Complete</td>
-<td>phases/phase-1-architecture.md</td>
+<td><a href="Architecture.md">Architecture.md</a></td>
 </tr>
 <tr>
 <td>Phase 2 - Cloud Security</td>
