@@ -174,7 +174,7 @@ CloudGuard-AI/
 </table>
 
 
-<p>Github Team Work Flow<a href="GIT_WORKFLOW.md">Github Team Work Flow</a> for full documentation</p>
+<p>Github Team Work Flow <a href="GIT_WORKFLOW.md">Github Team Work Flow</a> for full documentation</p>
 
 <p>👉 All features are merged only after a phase is completed.</p>
 
