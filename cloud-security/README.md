@@ -18,10 +18,6 @@ cloud-security/
 ├── config_rules/
 │   ├── s3-public-access-rule/
 │   └── sg-open-ports-rule/
-├── scripts/
-│   ├── test_s3_violation.md
-│   ├── test_sg_violation.md
-│   └── deployment_steps.md
 ├── diagrams/
 │   ├── s3_auto_remediation_architecture.png
 │   ├── sg_auto_remediation_architecture.png
@@ -86,8 +82,8 @@ These rules can be integrated with Lambda for auto-remediation.
 
 <hr>
 
-<h2>📂 3️⃣ scripts/ (Testing & Deployment)</h2>
-<p>Helper scripts for testing and deployment validation.</p>
+<h2> 3️⃣ (Testing)</h2>
+<p>Helper scripts for testing validation.</p>
 
 <h3>Test S3 Violation</h3>
 <pre>
