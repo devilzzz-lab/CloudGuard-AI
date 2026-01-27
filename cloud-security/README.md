@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Security Project Structure</title>
 </head>
 <body>
 
@@ -90,10 +89,8 @@ These rules can be integrated with Lambda for auto-remediation.
 <h2>📂 3️⃣ scripts/ (Testing & Deployment)</h2>
 <p>Helper scripts for testing and deployment validation.</p>
 
-<h3>🔹 test_s3_violation.md</h3>
+<h3>Test S3 Violation</h3>
 <pre>
-# Test S3 Violation
-
 1. Create an S3 bucket
 2. Disable Block Public Access
 3. Wait 5 minutes
@@ -101,25 +98,12 @@ These rules can be integrated with Lambda for auto-remediation.
 5. SNS email received
 </pre>
 
-<h3>🔹 test_sg_violation.md</h3>
+<h3>Test Security Group Violation</h3>
 <pre>
-# Test Security Group Violation
-
 1. Add SSH (22) from 0.0.0.0/0
 2. Wait 5 minutes
 3. Lambda removes rule
 4. SNS email received
-</pre>
-
-<h3>🔹 deployment_steps.md</h3>
-<pre>
-# Deployment Steps
-
-1. Create IAM roles with required permissions
-2. Deploy Lambda functions
-3. Configure SNS topic for alerts
-4. Create EventBridge schedules
-5. Validate remediation workflows
 </pre>
 
 <hr>
