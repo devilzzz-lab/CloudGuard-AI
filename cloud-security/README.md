@@ -14,7 +14,6 @@ cloud-security/
 ├── lambda/
 │   ├── s3_auto_remediation.py
 │   ├── sg_auto_remediation.py
-│   └── README.md
 ├── config_rules/
 │   ├── s3-public-access-rule/
 │   └── sg-open-ports-rule/
