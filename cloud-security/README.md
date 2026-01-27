@@ -139,7 +139,7 @@ diagrams/
     <li>Before/after remediation states</li>
     <li>CloudWatch metrics</li>
 </ul>
-<p><strong>Screenshot Link:</strong>
+<p><strong>Screenshots Link:</strong>
 <a href="https://drive.google.com/drive/folders/12vFNEkZRQHHyv405QpJz1vvhcPOl7BRh?usp=sharing" target="_blank">Screenshots</a></p>
 <hr>
 
