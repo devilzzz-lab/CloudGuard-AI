@@ -32,7 +32,10 @@ cloud-security/
 <h2>📂 1️⃣ lambda/ (Lambda Functions)</h2>
 <p><strong>This folder contains ALL Lambda source code.</strong></p>
 
+
 <h3>🔹 s3_auto_remediation.py</h3>
+<h2>🧩 S3 Auto Renediation Architecture (Base Level)</h2>
+<img src="diagrams/s3_auto_remediation_architecture.png" alt="S3 Auto Remediation Diagram" width="100%">
 <p>S3 bucket auto-remediation Lambda function with the following features:</p>
 <ul>
     <li>Detects public S3 buckets</li>
@@ -42,6 +45,8 @@ cloud-security/
 </ul>
 
 <h3>🔹 sg_auto_remediation.py</h3>
+<h2>🧩 Sg Auto Remediation Architecture (Base Level)</h2>
+<img src="diagrams/sg_auto_remediation_architecture.png" alt="Sg Auto Remediation Architecture Diagram" width="100%">
 <p>Security Group auto-remediation Lambda function:</p>
 <ul>
     <li>Detects 0.0.0.0/0 inbound rules</li>
