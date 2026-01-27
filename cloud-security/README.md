@@ -44,16 +44,6 @@ cloud-security/
     <li>Supports bucket exclusions</li>
 </ul>
 
-<p><strong>Code header example:</strong></p>
-<pre>
-"""
-S3 Auto-Remediation Lambda
-- Detects public S3 buckets
-- Enforces Public Access Block
-- Sends SNS alerts only on real remediation
-"""
-</pre>
-
 <h3>🔹 sg_auto_remediation.py</h3>
 <p>Security Group auto-remediation Lambda function:</p>
 <ul>
@@ -63,27 +53,17 @@ S3 Auto-Remediation Lambda
     <li>Sends SNS alerts</li>
 </ul>
 
-<p><strong>Code header example:</strong></p>
 <pre>
-"""
-Security Group Auto-Remediation Lambda
-- Detects risky inbound rules
-- Auto-removes public SSH/RDP/ALL rules
-- Sends SNS alerts
-"""
-</pre>
+Lambda Functions
 
-<h3>🔹 lambda/README.md</h3>
-<pre>
-# Lambda Functions
-
-## s3_auto_remediation.py
+<p>s3_auto_remediation.py
 Automatically detects and remediates public S3 buckets using 
-Public Access Block enforcement.
+Public Access Block enforcement.<p>
 
-## sg_auto_remediation.py
+<p>
+sg_auto_remediation.py
 Automatically detects and removes insecure Security Group rules 
-such as SSH/RDP open to the internet.
+such as SSH/RDP open to the internet.</p>
 </pre>
 
 <hr>
