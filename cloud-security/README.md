@@ -2,173 +2,188 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Security Project Structure</title>
 </head>
 <body>
-    <h1>📁 Final Cloud-Security Structure (Phase 2)</h1>
-    
+
+<h1>📁 Final Cloud-Security Structure (Phase 2)</h1>
+
+<h2>Project Structure</h2>
 <pre>
-├───cloud-security
-│   ├───config_rules
-│   │   ├───s3-public-access-rule
-│   │   └───sg-open-ports-rule
-│   ├───lambda
-│   └───screenshots
+cloud-security/
+├── lambda/
+│   ├── s3_auto_remediation.py
+│   ├── sg_auto_remediation.py
+│   └── README.md
+├── config_rules/
+│   ├── s3-public-access-rule/
+│   └── sg-open-ports-rule/
+├── scripts/
+│   ├── test_s3_violation.md
+│   ├── test_sg_violation.md
+│   └── deployment_steps.md
+├── diagrams/
+│   ├── s3_auto_remediation_architecture.png
+│   ├── sg_auto_remediation_architecture.png
+│   └── overall_phase2_architecture.png
+└── screenshots/
 </pre>
 
-<h2>📂 1️⃣ lambda/ (MOST IMPORTANT)</h2>
-<p><strong>👉 This folder contains ALL Lambda source code you wrote.</strong></p>
-    
-<p><strong>What to put here</strong></p>
-<pre>lambda/
-├── s3_auto_remediation.py
-├── sg_auto_remediation.py
-├── README.md</pre>
+<hr>
+
+<h2>📂 1️⃣ lambda/ (Lambda Functions)</h2>
+<p><strong>This folder contains ALL Lambda source code.</strong></p>
 
 <h3>🔹 s3_auto_remediation.py</h3>
-<p>Put your final S3 Lambda code (the one with):</p>
+<p>S3 bucket auto-remediation Lambda function with the following features:</p>
 <ul>
-    <li>Public Access Block check</li>
-    <li>No email spam</li>
-    <li>SNS alert</li>
-    <li>Exclusions</li>
+    <li>Detects public S3 buckets</li>
+    <li>Enforces Public Access Block</li>
+    <li>Sends SNS alerts on remediation</li>
+    <li>Supports bucket exclusions</li>
 </ul>
-<p><strong>📌 Add a small header comment at the top:</strong></p>
-<pre>"""
+
+<p><strong>Code header example:</strong></p>
+<pre>
+"""
 S3 Auto-Remediation Lambda
 - Detects public S3 buckets
 - Enforces Public Access Block
 - Sends SNS alerts only on real remediation
-""</pre>
+"""
+</pre>
 
 <h3>🔹 sg_auto_remediation.py</h3>
-<p>Put your Security Group Lambda:</p>
+<p>Security Group auto-remediation Lambda function:</p>
 <ul>
-    <li>Detects 0.0.0.0/0</li>
-    <li>SSH / RDP / ALL traffic</li>
-    <li>Removes risky rules</li>
+    <li>Detects 0.0.0.0/0 inbound rules</li>
+    <li>Identifies risky SSH/RDP/ALL traffic rules</li>
+    <li>Automatically removes insecure rules</li>
     <li>Sends SNS alerts</li>
-    </ul>
-<p><strong>Add header:</strong></p>
-<pre>"""
+</ul>
+
+<p><strong>Code header example:</strong></p>
+<pre>
+"""
 Security Group Auto-Remediation Lambda
 - Detects risky inbound rules
 - Auto-removes public SSH/RDP/ALL rules
 - Sends SNS alerts
-"""</pre>
-
-<h3>🔹 lambda/README.md</h3>
-<p>Explain what Lambdas exist and why. Example:</p>
-<pre># Lambda Functions
-
-<p> s3_auto_remediation.py
-Automatically detects and remediates public S3 buckets using
-Public Access Block enforcement.</p>
-
-<pre>sg_auto_remediation.py
-Automatically detects and removes insecure Security Group rules
-such as SSH/RDP open to the internet.</pre>
-
-<hr>
-
-<h2>📂 2️⃣ config-rules/</h2>
-<p>Even if you didn't deploy AWS Config rules yet, this folder shows design maturity.</p>
-    
-<p><strong>Check the Screenshot of Folders</strong></p>
-<pre>config-rules/
-├── s3-public-access-rule/
-├── sg-open-ports-rule/
+"""
 </pre>
 
-This folder contains AWS Config rules used to detect
-non-compliant cloud resources.
+<h3>🔹 lambda/README.md</h3>
+<pre>
+# Lambda Functions
 
-These rules can be integrated with Lambda for auto-remediation.</pre>
+## s3_auto_remediation.py
+Automatically detects and remediates public S3 buckets using 
+Public Access Block enforcement.
+
+## sg_auto_remediation.py
+Automatically detects and removes insecure Security Group rules 
+such as SSH/RDP open to the internet.
+</pre>
 
 <hr>
 
-<h2>📂 3️⃣ scripts/</h2>
-<p>This is for helper scripts, testing, and local validation.</p>
-    
-<p><strong>What to put here</strong></p>
-<pre>scripts/
-├── test_s3_violation.md
-├── test_sg_violation.md
-├── deployment_steps.md</pre>
+<h2>📂 2️⃣ config_rules/ (AWS Config Rules)</h2>
+<p>Contains AWS Config rule configurations for compliance detection.</p>
+
+<h3>Structure:</h3>
+<pre>
+config_rules/
+├── s3-public-access-rule/
+└── sg-open-ports-rule/
+</pre>
+
+<p><strong>Purpose:</strong></p>
+<pre>
+This folder contains AWS Config rules used to detect 
+non-compliant cloud resources.
+
+These rules can be integrated with Lambda for auto-remediation.
+</pre>
+
+<hr>
+
+<h2>📂 3️⃣ scripts/ (Testing & Deployment)</h2>
+<p>Helper scripts for testing and deployment validation.</p>
 
 <h3>🔹 test_s3_violation.md</h3>
-<p>Explain how to test manually:</p>
-<pre># Test S3 Violation
+<pre>
+# Test S3 Violation
 
 1. Create an S3 bucket
 2. Disable Block Public Access
 3. Wait 5 minutes
 4. Lambda remediates automatically
-5. SNS email received</pre>
+5. SNS email received
+</pre>
 
 <h3>🔹 test_sg_violation.md</h3>
-<pre># Test Security Group Violation
+<pre>
+# Test Security Group Violation
 
 1. Add SSH (22) from 0.0.0.0/0
 2. Wait 5 minutes
 3. Lambda removes rule
-4. SNS email received</pre>
+4. SNS email received
+</pre>
 
 <h3>🔹 deployment_steps.md</h3>
-<p>This is GOLD for reviewers.</p>
-<pre># Deployment Steps
+<pre>
+# Deployment Steps
 
-1. Create IAM roles
+1. Create IAM roles with required permissions
 2. Deploy Lambda functions
-3. Configure SNS topic
+3. Configure SNS topic for alerts
 4. Create EventBridge schedules
-5. Validate remediation</pre>
+5. Validate remediation workflows
+</pre>
 
 <hr>
 
-<h2>📂 4️⃣ diagrams/</h2>
-<p>This is where your project looks professional.</p>
-    
-<p><strong>What to put here</strong></p>
-<pre>diagrams/
+<h2>📂 4️⃣ diagrams/ (Architecture Diagrams)</h2>
+<p>Visual representation of the remediation workflows.</p>
+
+<h3>Contents:</h3>
+<pre>
+diagrams/
 ├── s3_auto_remediation_architecture.png
 ├── sg_auto_remediation_architecture.png
-├── overall_phase2_architecture.png</pre>
+└── overall_phase2_architecture.png
+</pre>
 
-<p><strong>What these diagrams show</strong></p>
+<p><strong>What these diagrams show:</strong></p>
 <ul>
-    <li>EventBridge → Lambda → AWS resource</li>
-    <li>SNS → Email</li>
-    <li>Scheduled remediation flow</li>
+    <li>EventBridge → Lambda → AWS resource flow</li>
+    <li>SNS → Email notification path</li>
+    <li>Scheduled remediation architecture</li>
 </ul>
-<p><strong>📌 Even hand-drawn → exported PNG is fine.</strong></p>
 
 <hr>
 
-<h2>📄 5️⃣ README.md (ROOT FILE)</h2>
-<p>This is your main documentation. Example structure</p>
-<pre># CloudGuard AI – Phase 2
-Automated Cloud Security Remediation
+<h2>📂 5️⃣ screenshots/ (Evidence)</h2>
+<p>Store screenshots of:</p>
+<ul>
+    <li>Lambda execution logs</li>
+    <li>SNS email notifications</li>
+    <li>Before/after remediation states</li>
+    <li>CloudWatch metrics</li>
+</ul>
 
-<p>Overview
-Phase 2 focuses on automated detection and remediation of
-cloud security misconfigurations using AWS-native services.</p>
+<hr>
 
-<p> Implemented Controls
-- S3 public access auto-remediation
-- Security Group open port auto-remediation
-- Scheduled enforcement using EventBridge
-- Alerting via SNS</p>
-
-<p> Architecture
-See diagrams/ for detailed flow diagrams.</p>
-
-<p>Technologies Used
-- AWS Lambda
-- EventBridge Scheduler
-- Amazon SNS
-- Amazon S3
-- Amazon EC2 Security Groups
-</p>
+<h2>Technologies Used</h2>
+<ul>
+    <li>AWS Lambda</li>
+    <li>EventBridge Scheduler</li>
+    <li>Amazon SNS</li>
+    <li>Amazon S3</li>
+    <li>Amazon EC2 Security Groups</li>
+</ul>
 
 </body>
 </html>
