@@ -2,15 +2,15 @@
 <p><strong>Intelligent Cloud Security & Operations Platform</strong></p>
 
 <h2>📌 Project Overview</h2>
-<p>CloudGuard AI is a hybrid cloud-native platform designed to provide end-to-end cloud security, DevOps automation, and machine-learning-driven intelligence through a single unified system.</p>
+<p>CloudGuard AI is a hybrid cloud native platform designed to provide end to end cloud security, DevOps automation, and machine learning driven intelligence through a single unified system.</p>
 
 <p>The platform continuously:</p>
 <ul>
-<li>Detects and auto-remediates AWS cloud misconfigurations</li>
+<li>Detects and auto remediates AWS cloud misconfigurations</li>
 <li>Automates CI/CD and Kubernetes deployments</li>
 <li>Monitors infrastructure using Prometheus & Grafana</li>
 <li>Applies ML intelligence on security logs and DevOps metrics</li>
-<li>Presents everything through a secure MERN-based dashboard</li>
+<li>Presents everything through a secure MERN based dashboard</li>
 </ul>
 
 <p>This project follows a real enterprise architecture, where each domain is independently developed and integrated via APIs.</p>
@@ -34,7 +34,7 @@
 <li>Monitor Kubernetes clusters and applications</li>
 <li>Apply ML to identify anomalies and risk patterns</li>
 <li>Provide a centralized dashboard with authentication</li>
-<li>Follow a phase-wise, modular, enterprise approach</li>
+<li>Follow a phase wise, modular, enterprise approach</li>
 </ul>
 
 <h2>🏗️ Deployment Model</h2>
@@ -59,7 +59,7 @@
 <img src="/diagrams/system-architecture.png" alt="CloudGuard AI Architecture Diagram" width="100%">
 
 <h2>👥 Team Composition & Responsibilities</h2>
-<table>
+<table border="1" cellpadding="8" cellspacing="0">
 <thead>
 <tr>
 <th>Member</th>
@@ -114,9 +114,12 @@ CloudGuard-AI/
 │
 ├── cloud-security/
 │   ├── lambda/
-│   ├── config-rules/
-│   ├── scripts/
-│   └── diagrams/
+│   ├── config_rules/
+│   │   ├── s3-public-access-rule/
+│   │   └── sg-open-ports-rule/
+│   ├── diagrams/
+│   ├── screenshots/
+│   └── README.md
 │
 ├── ml-engine/
 │   ├── app.py
@@ -133,39 +136,39 @@ CloudGuard-AI/
 </pre>
 
 <h2>🌳 Branch Strategy</h2>
-<table>
+<table border="1" cellpadding="8" cellspacing="0">
 <thead>
 <tr>
 <th>Branch</th>
 <th>Owner</th>
-<th>Name
+<th>Name</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>main</td>
 <td>You (Final integration & delivery)</td>
-<td>Sriram
+<td>Sriram</td>
 </tr>
 <tr>
 <td>devops</td>
 <td>DevOps work</td>
-<td>Sriram
+<td>Sriram</td>
 </tr>
 <tr>
 <td>cloud-security</td>
 <td>Security work</td>
-<td>Vikas
+<td>Vikas</td>
 </tr>
 <tr>
 <td>ml-engine</td>
 <td>ML work</td>
-<td>Thilakpriyan
+<td>Thilakpriyan</td>
 </tr>
 <tr>
 <td>mern-app</td>
 <td>MERN work</td>
-<td>Srimathi
+<td>Srimathi</td>
 </tr>
 </tbody>
 </table>
@@ -174,8 +177,8 @@ CloudGuard-AI/
 
 <h2>🧩 PHASE-WISE IMPLEMENTATION (CORE OF PROJECT)</h2>
 
-<h3>🟦 PHASE 1 — Project Planning & Architecture</h3>
-<p><strong>Owner:</strong> DevOps Lead (You)</p>
+<h3>🟦 PHASE 1 — Project Planning & Architecture ✅ COMPLETED</h3>
+<p><strong>Owner:</strong> DevOps Lead (Sriram)</p>
 
 <p><strong>Objectives</strong></p>
 <ul>
@@ -192,10 +195,10 @@ CloudGuard-AI/
 <li>Repo structure</li>
 </ul>
 
-<p>✅ Phase completes before any development starts</p>
+<p>✅ Phase completed</p>
 
-<h3>🟩 PHASE 2 — Cloud Security Foundation</h3>
-<p><strong>Owner:</strong> Cloud Security Engineer</p>
+<h3>🟩 PHASE 2 — Cloud Security Foundation ✅ COMPLETED</h3>
+<p><strong>Owner:</strong> Cloud Security Engineer (Vikas)</p>
 
 <p><strong>Objectives</strong></p>
 <ul>
@@ -207,7 +210,6 @@ CloudGuard-AI/
 <p><strong>Implementations</strong></p>
 <ul>
 <li>AWS Config rules</li>
-<li>CloudTrail logging</li>
 <li>Security detection logic</li>
 <li>Lambda-based auto-remediation</li>
 <li>SNS alerts</li>
@@ -220,8 +222,11 @@ CloudGuard-AI/
 <li>Real-time detection & remediation</li>
 </ul>
 
+<p>✅ Phase completed - See <a href="cloud-security/README.md">cloud-security/README.md</a> for full documentation</p>
+
 <h3>🟨 PHASE 3 — DevOps Automation & Platform Setup</h3>
-<p><strong>Owner:</strong> DevOps Engineer</p>
+<p><strong>Owner:</strong> DevOps Engineer (Sriram)</p>
+<p><strong>Status:</strong> In Progress</p>
 
 <p><strong>Objectives</strong></p>
 <ul>
@@ -246,7 +251,8 @@ CloudGuard-AI/
 </ul>
 
 <h3>🟧 PHASE 4 — Machine Learning Intelligence Layer</h3>
-<p><strong>Owner:</strong> ML Engineer</p>
+<p><strong>Owner:</strong> ML Engineer (Thilakpriyan)</p>
+<p><strong>Status:</strong> Planned</p>
 
 <p><strong>Objectives</strong></p>
 <ul>
@@ -269,7 +275,8 @@ CloudGuard-AI/
 </ul>
 
 <h3>🟥 PHASE 5 — MERN Application (Product Layer)</h3>
-<p><strong>Owner:</strong> MERN Stack Developer</p>
+<p><strong>Owner:</strong> MERN Stack Developer (Srimathi)</p>
+<p><strong>Status:</strong> Planned</p>
 
 <p><strong>Objectives</strong></p>
 <ul>
@@ -301,6 +308,7 @@ CloudGuard-AI/
 
 <h3>🟪 PHASE 6 — Integration, Testing & Validation</h3>
 <p><strong>Owner:</strong> Entire Team (DevOps lead)</p>
+<p><strong>Status:</strong> Planned</p>
 
 <p><strong>Objectives</strong></p>
 <ul>
@@ -360,11 +368,54 @@ CloudGuard-AI/
 <li>JWT Authentication</li>
 </ul>
 
-<h2>🎓 Viva Explanation (One-Line)</h2>
+<h2>📊 Project Progress</h2>
+<table border="1" cellpadding="8" cellspacing="0">
+<thead>
+<tr>
+<th>Phase</th>
+<th>Status</th>
+<th>Documentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Phase 1 - Architecture</td>
+<td>✅ Complete</td>
+<td>phases/phase-1-architecture.md</td>
+</tr>
+<tr>
+<td>Phase 2 - Cloud Security</td>
+<td>✅ Complete</td>
+<td><a href="cloud-security/README.md">cloud-security/README.md</a></td>
+</tr>
+<tr>
+<td>Phase 3 - DevOps</td>
+<td>🔄 In Progress</td>
+<td>devops/README.md</td>
+</tr>
+<tr>
+<td>Phase 4 - ML Engine</td>
+<td>⏳ Planned</td>
+<td>ml-engine/README.md</td>
+</tr>
+<tr>
+<td>Phase 5 - MERN App</td>
+<td>⏳ Planned</td>
+<td>mern-app/README.md</td>
+</tr>
+<tr>
+<td>Phase 6 - Integration</td>
+<td>⏳ Planned</td>
+<td>phases/phase-6-integration.md</td>
+</tr>
+</tbody>
+</table>
+
+<h2>🎓 Viva Explanation (One Line)</h2>
 <p>CloudGuard AI is a modular hybrid cloud platform that integrates cloud security enforcement, DevOps automation, machine learning intelligence, and a full-stack dashboard, reflecting real enterprise cloud operations.</p>
 
 <h2>🏁 Final Conclusion</h2>
-<p>CloudGuard AI demonstrates how modern cloud systems are actually built — with multiple specialized teams, strong automation, preventive security, intelligent analytics, and a unified product interface.</p>
+<p>CloudGuard AI demonstrates how modern cloud systems are actually built with multiple specialized teams, strong automation, preventive security, intelligent analytics, and a unified product interface.</p>
 
 <p>This project is:</p>
 <ul>
