@@ -24,6 +24,9 @@ cloud-security/
 └── screenshots/
 </pre>
 
+<h2>🧩 System Architecture (High Level)</h2>
+<img src="diagrams/overall_phase2_architecture.png" alt="Cloud Security Architecture Diagram" width="100%">
+
 <hr>
 
 <h2>📂 1️⃣ lambda/ (Lambda Functions)</h2>
