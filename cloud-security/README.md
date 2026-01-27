@@ -57,13 +57,12 @@ cloud-security/
 
 <h2>Lambda Functions</h2>
 
-<p>s3_auto_remediation.py
-Automatically detects and remediates public S3 buckets using 
-Public Access Block enforcement.<p>
+<pre>s3_auto_remediation.py</pre>
+<p>Automatically detects and remediates public S3 buckets using 
+Public Access Block enforcement.</p>
 
-<p>
-sg_auto_remediation.py
-Automatically detects and removes insecure Security Group rules 
+<pre>sg_auto_remediation.py</pre>
+<p>Automatically detects and removes insecure Security Group rules 
 such as SSH/RDP open to the internet.</p>
 
 <hr>
