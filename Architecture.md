@@ -139,9 +139,8 @@
 
 <h2>🚀 Navigation</h2>
 <p align="center">
-    <a href="README.html">← Back to Home</a> | 
-    <a href="what.html">What is it?</a> | 
-    <a href="operating-model.html">👥 Roles</a>
+    <a href="README.md">← Back to Home</a> | 
+    <a href="what?.html">What is it?</a> | 
 </p>
 
 </body>

@@ -59,7 +59,7 @@
     <li>Repo structure</li>
 </ul>
 
-<p>✅ <a href="Architecture.md">Phase completed</a></p>
+<p>✅ <a href="Architecture.md">Phase 1 completed</a></p>
 
 <hr>
 
@@ -81,7 +81,7 @@
     <li>IAM governance & SCPs</li>
 </ul>
 
-<p>✅ <a href="cloud-security/README.md">Phase completed</a></p>
+<p>✅ <a href="cloud-security/README.md">Phase 2 completed</a></p>
 
 <hr>
 
