@@ -278,7 +278,7 @@ AWS     Kubernetes   ML Models
 <hr>
 
 <p align="center">
-    <a href="README.html">← Back to CloudGuard AI Home</a>
+    <a href="README.md">← Back to CloudGuard AI Home</a>
 </p>
 
 </body>
