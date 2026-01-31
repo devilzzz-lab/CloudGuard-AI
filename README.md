@@ -247,9 +247,8 @@
 
 <h2>🚀 Quick Navigation</h2>
 <p align="center">
-    <a href="what.html">📖 What is it?</a> | 
-    <a href="operating-model.html">👥 Roles + Flow</a> | 
-    <a href="cloud-security/README.html">🔐 Cloud Security</a>
+    <a href="what?.md">📖 What is it?</a> | 
+    <a href="cloud-security/README.md">🔐 Cloud Security</a>
 </p>
 
 </body>
