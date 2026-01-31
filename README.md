@@ -59,7 +59,7 @@
     <li>Repo structure</li>
 </ul>
 
-<p>✅ <a href="phases/phase-1-architecture.md">Phase completed</a></p>
+<p>✅ <a href="Architecture.md">Phase completed</a></p>
 
 <hr>
 
