@@ -250,7 +250,7 @@
 
 <h2>🚀 Quick Navigation</h2>
 <p align="center">
-    <a href="what?.md">📖 What is it?</a> | 
+    <a href="what.md">📖 What is it?</a> | 
     <a href="cloud-security/README.md">🔐 Cloud Security</a>
 </p>
 
