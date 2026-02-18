@@ -37,6 +37,9 @@
 
 <p>👉 <strong>CloudGuard AI solves ALL THREE via one platform</strong></p>
 
+<h2>🧩 System Architecture (High Level)</h2>
+<img src="/diagrams/system-architecture.png" alt="CloudGuard AI Architecture Diagram" width="100%">
+
 <hr>
 
 <h2>🧩 PHASE-WISE IMPLEMENTATION (CORE OF PROJECT)</h2>
