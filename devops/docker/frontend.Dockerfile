@@ -1,13 +1,20 @@
-FROM node:18
+# Build stage
+FROM node:18 AS build
 
 WORKDIR /app
 
-COPY mern-stack/frontend/package.json .
-
+COPY mern-stack/frontend/package*.json ./
 RUN npm install
 
-COPY mern-stack/frontend .
+COPY mern-stack/frontend/ .
+RUN npm run build
 
-EXPOSE 3000
 
-CMD ["npm", "start"]
+# Production stage
+FROM nginx:alpine
+
+COPY --from=build /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

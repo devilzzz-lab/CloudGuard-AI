@@ -1,11 +1,11 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
 REGISTRY="devilzz"
 BACKEND_IMAGE="cloudguard-backend"
 FRONTEND_IMAGE="cloudguard-frontend"
-# ML_IMAGE="cloudguard-ml"
-TAG="latest"
+
+TAG="build-${BUILD_NUMBER}"
 
 echo "======================================"
 echo "🚀 Production Deployment"
@@ -24,13 +24,11 @@ kubectl set image deployment/cloudguard-frontend \
 frontend=${REGISTRY}/${FRONTEND_IMAGE}:${TAG} \
 -n cloudguard
 
-# kubectl set image deployment/cloudguard-ml \
-# ml=${REGISTRY}/${ML_IMAGE}:${TAG} \
-# -n cloudguard 
+kubectl rollout status deployment/cloudguard-backend -n cloudguard
+kubectl rollout status deployment/cloudguard-frontend -n cloudguard
 
-kubectl rollout status deployment cloudguard-backend -n cloudguard
-kubectl rollout status deployment cloudguard-frontend -n cloudguard
-# kubectl rollout status deployment cloudguard-ml -n cloudguard
+kubectl rollout history deployment cloudguard-backend -n cloudguard
+kubectl rollout history deployment cloudguard-frontend -n cloudguard
 
 kubectl get pods -n cloudguard
 
