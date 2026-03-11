@@ -2,12 +2,11 @@ FROM node:18
 
 WORKDIR /app
 
-COPY mern-stack/frontend/package*.json ./
-
+COPY mern-stack/backend/package*.json ./
 RUN npm install
 
-COPY mern-stack/frontend/ .
+COPY mern-stack/backend/ .
 
-EXPOSE 3000
+EXPOSE 3001
 
-CMD ["npm", "start"]
+CMD ["node", "server.js"]
