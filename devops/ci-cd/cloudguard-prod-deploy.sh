@@ -14,7 +14,7 @@ echo "======================================"
 
 kubectl get ns cloudguard || kubectl create ns cloudguard
 
-kubectl apply -n cloudguard -f k8s/
+kubectl apply -n cloudguard -f devops/k8s/
 
 kubectl set image deployment/cloudguard-backend \
 backend=${REGISTRY}/${BACKEND_IMAGE}:${TAG} \
