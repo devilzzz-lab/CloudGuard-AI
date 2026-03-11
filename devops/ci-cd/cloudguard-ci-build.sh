@@ -17,13 +17,13 @@ echo "🔐 Docker Login..."
 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
 
 echo "🐳 Building Backend Image..."
-docker build -t ${REGISTRY}/${BACKEND_IMAGE}:${TAG} -f docker/backend.Dockerfile .
+docker build -t ${REGISTRY}/${BACKEND_IMAGE}:${TAG} -f devops/docker/backend.Dockerfile .
 
 docker tag ${REGISTRY}/${BACKEND_IMAGE}:${TAG} ${REGISTRY}/${BACKEND_IMAGE}:latest
 
 
 echo "🐳 Building Frontend Image..."
-docker build -t ${REGISTRY}/${FRONTEND_IMAGE}:${TAG} -f docker/frontend.Dockerfile .
+docker build -t ${REGISTRY}/${FRONTEND_IMAGE}:${TAG} -f devops/docker/frontend.Dockerfile .
 
 docker tag ${REGISTRY}/${FRONTEND_IMAGE}:${TAG} ${REGISTRY}/${FRONTEND_IMAGE}:latest
 
