@@ -5,7 +5,7 @@ REGISTRY="devilzz"
 BACKEND_IMAGE="cloudguard-backend"
 FRONTEND_IMAGE="cloudguard-frontend"
 # ML_IMAGE="cloudguard-ml"
-TAG="${IMAGE_TAG}"
+TAG="latest"
 
 echo "======================================"
 echo "🚀 Production Deployment"
