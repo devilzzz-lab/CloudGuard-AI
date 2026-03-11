@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudguard-frontend
+  namespace: cloudguard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudguard-frontend
+  template:
+    metadata:
+      labels:
+        app: cloudguard-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: nginx
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"

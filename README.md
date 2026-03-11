@@ -45,7 +45,6 @@
 <h2>🧩 PHASE-WISE IMPLEMENTATION (CORE OF PROJECT)</h2>
 
 <h3>🟦 PHASE 1 — Project Planning & Architecture ✅ COMPLETED</h3>
-<p><strong>Owner:</strong> DevOps Lead (Sriram)</p>
 
 <p><strong>Objectives:</strong></p>
 <ul>
