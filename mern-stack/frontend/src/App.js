@@ -4,11 +4,11 @@ function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("/api/health")
-      .then((res) => res.json())
-      .then((data) => setMessage(data.status))
-      .catch(() => setMessage("Backend not reachable"));
-  }, []);
+  fetch("http://localhost:8084/api/health")
+    .then((res) => res.json())
+    .then((data) => setMessage(data.status))
+    .catch(() => setMessage("Backend not reachable"));
+}, []);
 
   return (
     <div style={{ textAlign: "center", marginTop: "100px" }}>

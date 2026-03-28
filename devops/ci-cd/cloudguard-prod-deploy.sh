@@ -5,14 +5,12 @@ REGISTRY="devilzz"
 BACKEND_IMAGE="cloudguard-backend"
 FRONTEND_IMAGE="cloudguard-frontend"
 
-TAG="${IMAGE_TAG}"
-
-TAG="${IMAGE_TAG}"
-
-if [ -z "${TAG}" ]; then
+if [ -z "${IMAGE_TAG:-}" ]; then
   echo "❌ ERROR: IMAGE_TAG is not set"
   exit 1
 fi
+
+TAG="${IMAGE_TAG}"
 
 echo "======================================"
 echo "🚀 Production Deployment"
