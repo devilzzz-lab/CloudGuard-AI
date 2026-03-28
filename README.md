@@ -12,13 +12,12 @@
 <hr>
 
 <h2>📌 Project Overview</h2>
-<p>CloudGuard AI is an <strong>internal enterprise platform</strong> that combines cloud security, DevOps automation, monitoring, and ML intelligence into a single unified dashboard for one organization's cloud environment.</p>
+<p>CloudGuard AI is an <strong>internal enterprise platform</strong> that combines cloud security, DevOps automation and ML intelligence into a single unified dashboard for one organization's cloud environment.</p>
 
 <p>The platform continuously:</p>
 <ul>
     <li>🔐 Detects & auto-remediates AWS misconfigurations</li>
     <li>🚀 Automates CI/CD + Kubernetes deployments</li>
-    <li>📊 Monitors via Prometheus + Grafana</li>
     <li>🤖 Applies ML anomaly detection</li>
     <li>🌐 Presents everything via secure MERN dashboard</li>
 </ul>
@@ -32,7 +31,6 @@
 <ul>
     <li><strong>Security:</strong> Misconfigurations = #1 breach cause</li>
     <li><strong>DevOps:</strong> Manual deployments + no visibility</li>
-    <li><strong>Intelligence:</strong> Reactive monitoring, no ML insights</li>
 </ul>
 
 <p>👉 <strong>CloudGuard AI solves ALL THREE via one platform</strong></p>
@@ -94,7 +92,6 @@
 <ul>
     <li>Automate build and deployment</li>
     <li>Run platform services reliably</li>
-    <li>Enable monitoring</li>
 </ul>
 
 <p><strong>Implementations:</strong></p>
@@ -197,10 +194,6 @@
     <tr>
         <td>DevOps</td>
         <td>Jenkins, Docker, KIND, Prometheus</td>
-    </tr>
-    <tr>
-        <td>Monitoring</td>
-        <td>Grafana, AlertManager</td>
     </tr>
     <tr>
         <td>ML</td>

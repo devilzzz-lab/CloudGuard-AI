@@ -18,7 +18,6 @@
 <p>In this project:</p>
 <ul>
     <li>The platform is configured for our own AWS account</li>
-    <li>It monitors our Kubernetes cluster</li>
     <li>It integrates with our Jenkins pipelines</li>
     <li>It analyzes our logs and metrics</li>
 </ul>
@@ -75,7 +74,6 @@
     <li>Cloud security status</li>
     <li>CI/CD pipeline overview</li>
     <li>Kubernetes cluster health</li>
-    <li>Monitoring dashboards</li>
     <li>ML anomaly summaries</li>
     <li>User & role management</li>
 </ul>
@@ -109,7 +107,6 @@
 <h4>What DevOps can do:</h4>
 <ul>
     <li>Trigger deployments (via Jenkins)</li>
-    <li>Monitor application health</li>
     <li>Investigate deployment failures</li>
     <li>Respond to operational alerts</li>
 </ul>
