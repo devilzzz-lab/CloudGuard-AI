@@ -99,7 +99,6 @@
     <li>Jenkins CI/CD pipelines</li>
     <li>Docker image builds</li>
     <li>Kubernetes deployment (KIND)</li>
-    <li>Prometheus + Grafana</li>
 </ul>
 
 <hr>
