@@ -1,34 +1,32 @@
-# 🚀 Phase 3 — DevOps Automation & Platform Setup
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
 
-## Overview
+<h1>🚀 Phase 3 — DevOps Automation & Platform Setup</h1>
 
-Phase 3 implements the **DevOps automation layer** for the CloudGuard AI platform.
+<h2>Overview</h2>
+<p>Phase 3 implements the <strong>DevOps automation layer</strong> for the CloudGuard AI platform.</p>
+<p>The goal is to automate application delivery, run platform services reliably inside Kubernetes, and enable real-time monitoring of the system.</p>
+<p>This phase establishes a <strong>production-like DevOps environment</strong> using containerization, CI/CD pipelines, and Kubernetes orchestration.</p>
 
-The goal of this phase is to automate application delivery, run platform services reliably inside Kubernetes, and enable real-time monitoring of the system.
+<h2>🎯 Objectives</h2>
+<p>The DevOps phase focuses on these key objectives:</p>
+<ul>
+  <li>Automate build and deployment of platform services</li>
+  <li>Run applications inside a Kubernetes cluster</li>
+  <li>Implement container-based infrastructure</li>
+  <li>Enable monitoring and observability</li>
+  <li>Provide automated CI/CD pipelines</li>
+</ul>
+<p>This allows CloudGuard AI services to run <strong>continuously and reliably</strong>.</p>
 
-This phase establishes a **production-like DevOps environment** using containerization, CI/CD pipelines, and Kubernetes orchestration.
-
----
-
-# 🎯 Objectives
-
-The DevOps phase focuses on the following objectives:
-
-* Automate build and deployment of platform services
-* Run applications inside a Kubernetes cluster
-* Implement container-based infrastructure
-* Enable monitoring and observability
-* Provide automated CI/CD pipelines
-
-This allows CloudGuard AI services to run **continuously and reliably**.
-
----
-
-# 🏗️ DevOps Architecture
-
-The DevOps automation layer connects development workflows with runtime infrastructure.
-
-```
+<h2>🏗️ DevOps Architecture</h2>
+<p>The DevOps automation layer connects development workflows with runtime infrastructure.</p>
+<pre>
 Developer
    ↓
 GitHub Repository
@@ -44,207 +42,221 @@ Kubernetes Cluster (KIND)
 Prometheus Monitoring
    ↓
 Grafana Dashboards
-```
+</pre>
+<p>This architecture ensures application updates are <strong>automatically built, deployed, and monitored</strong>.</p>
 
-This architecture ensures that application updates are **automatically built, deployed, and monitored**.
+<h2>⚙️ Technologies Used</h2>
+<table>
+  <tr>
+    <th>Technology</th>
+    <th>Purpose</th>
+  </tr>
+  <tr>
+    <td>Jenkins</td>
+    <td>CI/CD automation</td>
+  </tr>
+  <tr>
+    <td>Docker</td>
+    <td>Containerization</td>
+  </tr>
+  <tr>
+    <td>Kubernetes (KIND)</td>
+    <td>Container orchestration</td>
+  </tr>
+  <tr>
+    <td>Prometheus</td>
+    <td>Metrics collection</td>
+  </tr>
+  <tr>
+    <td>Grafana</td>
+    <td>Monitoring dashboards</td>
+  </tr>
+  <tr>
+    <td>GitHub</td>
+    <td>Source code management</td>
+  </tr>
+</table>
 
----
+<h2>🔄 CI/CD Pipeline Workflow</h2>
 
-# ⚙️ Technologies Used
+<h3>Step 1 - Enable ngrok</h3>
+<p>This command:</p>
+<pre>ngrok http 8080</pre>
+<p>generates a domain like <code>https://e6d7-14-102-13-146.ngrok-free.app</code> (port forwarding: ngrok URL → <code>http://localhost:8080</code>).</p>
+<p><strong>Setup GitHub Webhook:</strong></p>
+<ol>
+  <li>Copy the ngrok domain</li>
+  <li>Go to repo → Settings → Webhooks → Add webhook</li>
+  <li>Payload URL: <code>https://your-ngrok-url/github-webhook/</code></li>
+  <li>Content type: <code>application/json</code></li>
+</ol>
+<p>Now GitHub and Jenkins are connected!</p>
 
-The following tools were used to build the DevOps platform:
+<h3>Step 2 — Code Commit</h3>
+<pre>git push main</pre>
 
-| Technology        | Purpose                 |
-| ----------------- | ----------------------- |
-| Jenkins           | CI/CD automation        |
-| Docker            | Containerization        |
-| Kubernetes (KIND) | Container orchestration |
-| Prometheus        | Metrics collection      |
-| Grafana           | Monitoring dashboards   |
-| GitHub            | Source code management  |
+<h3>Step 3 — Jenkins CI Job</h3>
+<p>Jenkins automatically performs:</p>
+<ul>
+  <li>Pulls latest source code from GitHub via webhook</li>
+  <li>Builds Docker images (frontend + backend)</li>
+  <li>Tags images using build number</li>
+  <li>Pushes images to DockerHub registry</li>
+</ul>
+<p><strong>Example image tags:</strong></p>
+<pre>yourusername/cloudguard-backend:build-42
+yourusername/cloudguard-frontend:build-42</pre>
 
----
+<h3>Step 4 — Production Deployment Job</h3>
+<p>The deployment job executes:</p>
+<pre># Create Kubernetes namespace (if not exists)
+kubectl create namespace cloudguard --dry-run=client -o yaml | kubectl apply -f -
 
-# 🔄 CI/CD Pipeline Workflow
+# Apply Kubernetes manifests
+kubectl apply -f k8s/namespace.yaml
+kubectl apply -f k8s/backend-deployment.yaml
+kubectl apply -f k8s/backend-service.yaml
+kubectl apply -f k8s/frontend-deployment.yaml
+kubectl apply -f k8s/frontend-service.yaml
 
-The Jenkins pipeline automates the build and deployment process.
+# Update image in deployment and rollout
+kubectl set image deployment/backend-api cloudguard-backend=yourusername/cloudguard-backend:build-42 -n cloudguard
+kubectl rollout status deployment/backend-api -n cloudguard</pre>
 
-## Step 1 — Code Commit
+<h2>☸️ Kubernetes Platform Setup</h2>
+<p>All CloudGuard AI services run inside a <strong>Kubernetes cluster</strong> created using <strong>KIND (Kubernetes IN Docker)</strong>.</p>
 
-Developers push code to the GitHub repository.
+<h3>Namespace Structure</h3>
+<pre>cloudguard    # Application services
+monitoring    # Observability stack</pre>
 
-```
-git push origin main
-```
+<h3>Services Deployed</h3>
+<table>
+  <tr>
+    <th>Service</th>
+    <th>Purpose</th>
+    <th>Namespace</th>
+  </tr>
+  <tr>
+    <td>Backend API</td>
+    <td>Platform API service</td>
+    <td>cloudguard</td>
+  </tr>
+  <tr>
+    <td>Frontend</td>
+    <td>User dashboard</td>
+    <td>cloudguard</td>
+  </tr>
+  <tr>
+    <td>ML Engine</td>
+    <td>Anomaly detection service</td>
+    <td>cloudguard</td>
+  </tr>
+  <tr>
+    <td>MongoDB</td>
+    <td>Data storage</td>
+    <td>cloudguard</td>
+  </tr>
+  <tr>
+    <td>Prometheus</td>
+    <td>Metrics collection</td>
+    <td>monitoring</td>
+  </tr>
+  <tr>
+    <td>Grafana</td>
+    <td>Visualization</td>
+    <td>monitoring</td>
+  </tr>
+</table>
 
-## Step 2 — Jenkins CI Job
+<h2>📊 Monitoring & Observability</h2>
 
-Jenkins automatically performs the following tasks:
+<h3>Metrics Collection</h3>
+<p>Prometheus collects metrics from:</p>
+<ul>
+  <li>Kubernetes nodes</li>
+  <li>Application pods</li>
+  <li>Container resources</li>
+</ul>
+<p><strong>Key metrics monitored:</strong></p>
+<ul>
+  <li>CPU usage (%)</li>
+  <li>Memory usage (GB)</li>
+  <li>Pod restarts count</li>
+  <li>Deployment health status</li>
+  <li>Node resource utilization</li>
+</ul>
 
-* Pull latest source code
-* Build Docker image
-* Tag image using build number
-* Push image to DockerHub registry
+<h3>Visualization</h3>
+<p>Grafana dashboards provide real-time visualization of:</p>
+<ul>
+  <li>Cluster health</li>
+  <li>Application performance</li>
+  <li>Resource utilization</li>
+  <li>Alert timelines</li>
+</ul>
 
-Example image tag:
-
-```
-devilzz/cloudguard-backend:build-12
-```
-
----
-
-## Step 3 — Production Deployment Job
-
-The deployment job performs the following operations:
-
-* Creates Kubernetes namespace (if not exists)
-* Applies Kubernetes manifests
-* Updates container image in deployment
-* Waits for rollout completion
-
-Example commands executed by Jenkins:
-
-```
-kubectl get ns cloudguard || kubectl create ns cloudguard
-
-kubectl apply -n cloudguard -f k8s/
-
-kubectl set image deployment/cloudguard-backend \
-cloudguard-backend=devilzz/cloudguard-backend:build-12 \
--n cloudguard
-
-kubectl rollout status deployment cloudguard-backend -n cloudguard
-```
-
----
-
-# ☸️ Kubernetes Platform Setup
-
-All CloudGuard AI services run inside a **Kubernetes cluster**.
-
-A lightweight Kubernetes cluster was created using **KIND (Kubernetes in Docker)**.
-
-### Namespace Structure
-
-```
-cloudguard
-monitoring
-```
-
-### Services Deployed
-
-| Service     | Purpose                   |
-| ----------- | ------------------------- |
-| Backend API | Platform API service      |
-| ML Engine   | Anomaly detection service |
-| MongoDB     | Data storage              |
-| Prometheus  | Metrics collection        |
-| Grafana     | Visualization             |
-
----
-
-# 📊 Monitoring & Observability
-
-Monitoring was implemented using Prometheus and Grafana.
-
-## Metrics Collection
-
-Prometheus collects metrics from Kubernetes nodes and application pods.
-
-Examples of monitored metrics:
-
-* CPU usage
-* Memory usage
-* Pod restarts
-* Deployment health
-* Node resource utilization
-
-## Visualization
-
-Grafana dashboards provide real-time visualization of platform performance.
-
-DevOps engineers can observe system health and detect operational issues quickly.
-
----
-
-# 📁 Project Structure
-
-```
-devops/
-├── ci-cd
-│   ├── cloudguard-ci-build.sh
-│   └── cloudguard-prod-deploy.sh
-├── diagrams
-├── docker
-│   ├── backend.Dockerfile
-│   └── ml-engine.Dockerfile
-├── k8s
-│   ├── backend-deployment.yaml
-│   ├── backend-service.yaml
-│   ├── frontend-deployment.yaml
-│   ├── frontend-service.yaml
-│   ├── ml-deployment.yaml
-│   ├── ml-service.yaml
-│   ├── mongo.yaml
-│   └── namespace.yaml
-├── monitoring
-│   ├── alertmanager.yaml
-│   ├── grafana.yaml
-│   └── prometheus.yaml
+<h2>📁 Project Structure</h2>
+<pre>devops/
+├── ci-cd/
+│   ├── cloudguard-ci-build.sh       # CI build script
+│   └── cloudguard-prod-deploy.sh    # CD deploy script
+├── diagrams/                        # Architecture diagrams
+├── docker/
+│   ├── backend.Dockerfile
+│   └── ml-engine.Dockerfile
+├── k8s/
+│   ├── namespace.yaml
+│   ├── backend-deployment.yaml
+│   ├── backend-service.yaml
+│   ├── frontend-deployment.yaml
+│   ├── frontend-service.yaml
+│   ├── ml-deployment.yaml
+│   ├── ml-service.yaml
+│   └── mongo.yaml
+├── monitoring/
+│   ├── prometheus.yaml
+│   ├── grafana.yaml
+│   └── alertmanager.yaml
 ├── README.md
-└── screenshots
+└── screenshots/</pre>
 
----
+<h2>🔎 DevOps Responsibilities</h2>
+<p>The DevOps layer handles:</p>
+<ul>
+  <li>Automating build/deployment pipelines</li>
+  <li>Managing Kubernetes infrastructure</li>
+  <li>Ensuring 99.9% service uptime</li>
+  <li>Real-time system monitoring</li>
+  <li>Automated failure recovery</li>
+  <li>Deployment rollback capabilities</li>
+</ul>
 
-# 🔎 DevOps Responsibilities in the Platform
-
-The DevOps layer is responsible for:
-
-* Automating build and deployment pipelines
-* Managing Kubernetes infrastructure
-* Ensuring reliable service operation
-* Monitoring system health
-* Handling deployment failures and alerts
-
-This layer ensures that CloudGuard AI services run **continuously with minimal manual intervention**.
-
----
-
-# 🧠 How DevOps Integrates with Other Phases
-
-CloudGuard AI platform architecture consists of multiple independent domains.
-
-```
-User
+<h2>🧠 Integration Architecture</h2>
+<pre>User
  ↓
-MERN Dashboard
+MERN Dashboard (Phase 5)
  ↓
-Backend APIs
- ↓
----------------------------------
-| Security | DevOps | ML Engine |
----------------------------------
- ↓         ↓         ↓
-AWS     Kubernetes   ML Models
-```
+Backend APIs (Phase 2)
+ ---------------------------------
+| Security  | DevOps  | ML Engine |
+| (Phase 2) | (Phase 3)| (Phase 4) |
+ ---------------------------------
+ ↓          ↓         ↓
+AWS S3/EC2  KIND K8s  ML Models</pre>
+<p>Each domain operates independently but integrates through APIs and shared infrastructure.</p>
 
-Each domain operates independently but integrates through APIs and shared infrastructure.
+<h2>🎓 One-Line Summary</h2>
+<blockquote>
+  <p><strong>Phase 3 implements DevOps automation for CloudGuard AI with CI/CD pipelines, Kubernetes orchestration (KIND), Docker containerization, and Prometheus/Grafana monitoring.</strong></p>
+</blockquote>
 
----
-
-# 🎓 One-Line Summary
-
-> Phase 3 implements the DevOps automation layer of CloudGuard AI by enabling CI/CD pipelines, containerized deployments, Kubernetes orchestration, and real-time monitoring of platform services.
-
----
-
-# 📌 Phase Status
-
-```
-PHASE 1 — Architecture & Planning        ✅ Completed
+<h2>📌 Phase Status</h2>
+<pre>PHASE 1 — Architecture & Planning        ✅ Completed
 PHASE 2 — Cloud Security Foundation     ✅ Completed
-PHASE 3 — DevOps Automation Platform    🔄 In Progress
-PHASE 4 — ML Intelligence Layer         ⏳ Planned
-PHASE 5 — MERN Dashboard Interface      ⏳ Planned
-```
+PHASE 3 — DevOps Automation Platform    ✅ Completed
+PHASE 4 — ML Intelligence Layer         ⏳ Planned  
+PHASE 5 — MERN Dashboard Interface      ⏳ Planned</pre>
+
+</body>
+</html>
