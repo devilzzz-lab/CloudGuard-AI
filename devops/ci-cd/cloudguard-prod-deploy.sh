@@ -5,7 +5,14 @@ REGISTRY="devilzz"
 BACKEND_IMAGE="cloudguard-backend"
 FRONTEND_IMAGE="cloudguard-frontend"
 
-TAG="build-${BUILD_NUMBER}"
+TAG="${IMAGE_TAG}"
+
+TAG="${IMAGE_TAG}"
+
+if [ -z "${TAG}" ]; then
+  echo "❌ ERROR: IMAGE_TAG is not set"
+  exit 1
+fi
 
 echo "======================================"
 echo "🚀 Production Deployment"
@@ -31,5 +38,7 @@ kubectl rollout history deployment cloudguard-backend -n cloudguard
 kubectl rollout history deployment cloudguard-frontend -n cloudguard
 
 kubectl get pods -n cloudguard
+
+echo "IMAGE_TAG received: ${TAG}"
 
 echo "✅ Deployment completed"

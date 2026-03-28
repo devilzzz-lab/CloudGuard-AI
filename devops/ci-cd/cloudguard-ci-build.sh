@@ -33,4 +33,5 @@ docker push ${REGISTRY}/${BACKEND_IMAGE}:latest
 docker push ${REGISTRY}/${FRONTEND_IMAGE}:${TAG}
 docker push ${REGISTRY}/${FRONTEND_IMAGE}:latest
 
+
 echo "✅ CI Build completed"
