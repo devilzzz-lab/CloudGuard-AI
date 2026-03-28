@@ -92,7 +92,8 @@ Kubernetes Cluster (KIND)
 </ul>
 <p><strong>Example image tags:</strong></p>
 <pre>yourusername/cloudguard-backend:build-42
-yourusername/cloudguard-frontend:build-42</pre>
+yourusername/cloudguard-frontend:build-42
+yourusername/cloudguard-ml-engine:build-42</pre>
 
 <h3>Step 4 — Production Deployment Job</h3>
 <p>The deployment job executes:</p>
@@ -105,6 +106,9 @@ kubectl apply -f k8s/backend-deployment.yaml
 kubectl apply -f k8s/backend-service.yaml
 kubectl apply -f k8s/frontend-deployment.yaml
 kubectl apply -f k8s/frontend-service.yaml
+kubectl apply -f k8s/ml-deployment.yaml
+kubectl apply -f k8s/ml-service.yaml
+
 
 # Update image in deployment and rollout
 kubectl set image deployment/backend-api cloudguard-backend=yourusername/cloudguard-backend:build-42 -n cloudguard
@@ -196,15 +200,8 @@ AWS S3/EC2  KIND K8s  ML Models</pre>
 
 <h2>🎓 One-Line Summary</h2>
 <blockquote>
-  <p><strong>Phase 3 implements DevOps automation for CloudGuard AI with CI/CD pipelines, Kubernetes orchestration (KIND), Docker containerization, and Prometheus/Grafana monitoring.</strong></p>
+  <p><strong>Phase 3 implements DevOps automation for CloudGuard AI with CI/CD pipelines, Kubernetes orchestration (KIND) and Docker containerization</strong></p>
 </blockquote>
-
-<h2>📌 Phase Status</h2>
-<pre>PHASE 1 — Architecture & Planning        ✅ Completed
-PHASE 2 — Cloud Security Foundation     ✅ Completed
-PHASE 3 — DevOps Automation Platform    ✅ Completed
-PHASE 4 — ML Intelligence Layer         ⏳ Planned  
-PHASE 5 — MERN Dashboard Interface      ⏳ Planned</pre>
 
 </body>
 </html>
