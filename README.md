@@ -100,6 +100,8 @@
     <li>Kubernetes deployment (KIND)</li>
 </ul>
 
+<p>✅ <a href="devops/README.md">Phase 3 completed</a></p>
+
 <hr>
 
 <h3>🟧 PHASE 4 — Machine Learning Intelligence Layer ⏳ PLANNED</h3>
