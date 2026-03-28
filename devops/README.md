@@ -10,7 +10,7 @@
 
 <h2>Overview</h2>
 <p>Phase 3 implements the <strong>DevOps automation layer</strong> for the CloudGuard AI platform.</p>
-<p>The goal is to automate application delivery, run platform services reliably inside Kubernetes, and enable real-time monitoring of the system.</p>
+<p>The goal is to automate application delivery, run platform services reliably inside Kubernetes</p>
 <p>This phase establishes a <strong>production-like DevOps environment</strong> using containerization, CI/CD pipelines, and Kubernetes orchestration.</p>
 
 <h2>🎯 Objectives</h2>
@@ -19,7 +19,6 @@
   <li>Automate build and deployment of platform services</li>
   <li>Run applications inside a Kubernetes cluster</li>
   <li>Implement container-based infrastructure</li>
-  <li>Enable monitoring and observability</li>
   <li>Provide automated CI/CD pipelines</li>
 </ul>
 <p>This allows CloudGuard AI services to run <strong>continuously and reliably</strong>.</p>
@@ -38,12 +37,8 @@ Docker Image Build
 DockerHub Registry
    ↓
 Kubernetes Cluster (KIND)
-   ↓
-Prometheus Monitoring
-   ↓
-Grafana Dashboards
 </pre>
-<p>This architecture ensures application updates are <strong>automatically built, deployed, and monitored</strong>.</p>
+<p>This architecture ensures application updates are <strong>automatically built and deployed</strong>.</p>
 
 <h2>⚙️ Technologies Used</h2>
 <table>
@@ -62,14 +57,6 @@ Grafana Dashboards
   <tr>
     <td>Kubernetes (KIND)</td>
     <td>Container orchestration</td>
-  </tr>
-  <tr>
-    <td>Prometheus</td>
-    <td>Metrics collection</td>
-  </tr>
-  <tr>
-    <td>Grafana</td>
-    <td>Monitoring dashboards</td>
   </tr>
   <tr>
     <td>GitHub</td>
@@ -157,44 +144,9 @@ monitoring    # Observability stack</pre>
     <td>Data storage</td>
     <td>cloudguard</td>
   </tr>
-  <tr>
-    <td>Prometheus</td>
-    <td>Metrics collection</td>
-    <td>monitoring</td>
-  </tr>
-  <tr>
-    <td>Grafana</td>
-    <td>Visualization</td>
-    <td>monitoring</td>
-  </tr>
 </table>
 
-<h2>📊 Monitoring & Observability</h2>
-
-<h3>Metrics Collection</h3>
-<p>Prometheus collects metrics from:</p>
-<ul>
-  <li>Kubernetes nodes</li>
-  <li>Application pods</li>
-  <li>Container resources</li>
-</ul>
-<p><strong>Key metrics monitored:</strong></p>
-<ul>
-  <li>CPU usage (%)</li>
-  <li>Memory usage (GB)</li>
-  <li>Pod restarts count</li>
-  <li>Deployment health status</li>
-  <li>Node resource utilization</li>
-</ul>
-
-<h3>Visualization</h3>
-<p>Grafana dashboards provide real-time visualization of:</p>
-<ul>
-  <li>Cluster health</li>
-  <li>Application performance</li>
-  <li>Resource utilization</li>
-  <li>Alert timelines</li>
-</ul>
+<hr>
 
 <h2>📁 Project Structure</h2>
 <pre>devops/
@@ -214,10 +166,6 @@ monitoring    # Observability stack</pre>
 │   ├── ml-deployment.yaml
 │   ├── ml-service.yaml
 │   └── mongo.yaml
-├── monitoring/
-│   ├── prometheus.yaml
-│   ├── grafana.yaml
-│   └── alertmanager.yaml
 ├── README.md
 └── screenshots/</pre>
 
