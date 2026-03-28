@@ -33,7 +33,6 @@
     <li>AWS account credentials (IAM role / access keys)</li>
     <li>Jenkins URL and API token</li>
     <li>Kubernetes cluster access (kubeconfig)</li>
-    <li>Prometheus metrics endpoint</li>
 </ul>
 
 <p>⚠️ These credentials are:</p>
@@ -100,8 +99,6 @@
     <li>CI/CD pipeline status (Jenkins)</li>
     <li>Build and deployment history</li>
     <li>Kubernetes pod & service status</li>
-    <li>Prometheus metrics (CPU, memory, pods)</li>
-    <li>Deployment alerts</li>
 </ul>
 
 <h4>What DevOps can do:</h4>
@@ -182,7 +179,6 @@
     <li>AWS Config checks cloud resources</li>
     <li>Jenkins pipelines run on code changes</li>
     <li>Kubernetes runs applications</li>
-    <li>Prometheus collects metrics</li>
     <li>ML analyzes logs and metrics</li>
 </ul>
 
@@ -271,7 +267,7 @@ AWS     Kubernetes   ML Models
 <h2>🎓 PERFECT ONE-LINE VIVA ANSWER</h2>
 
 <blockquote>
-    <p><strong>CloudGuard AI is an internal, role-based enterprise platform that secures, deploys, monitors, and intelligently analyzes a company's own cloud infrastructure through a unified dashboard.</strong></p>
+    <p><strong>CloudGuard AI is an internal, role-based enterprise platform that secures, deploys, and intelligently analyzes a company's own cloud infrastructure through a unified dashboard.</strong></p>
 </blockquote>
 
 <hr>

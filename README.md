@@ -43,7 +43,6 @@
 <h2>🧩 PHASE-WISE IMPLEMENTATION (CORE OF PROJECT)</h2>
 
 <h3>🟦 PHASE 1 — Project Planning & Architecture ✅ COMPLETED</h3>
-
 <p><strong>Objectives:</strong></p>
 <ul>
     <li>Finalize system architecture</li>
@@ -192,7 +191,7 @@
     </tr>
     <tr>
         <td>DevOps</td>
-        <td>Jenkins, Docker, KIND, Prometheus</td>
+        <td>Jenkins, Docker, KIND</td>
     </tr>
     <tr>
         <td>ML</td>
