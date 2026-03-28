@@ -4,6 +4,7 @@ set -euo pipefail
 REGISTRY="devilzz"
 BACKEND_IMAGE="cloudguard-backend"
 FRONTEND_IMAGE="cloudguard-frontend"
+ML_IMAGE="cloudguard-ml-engine"
 
 TAG="build-${BUILD_NUMBER}"
 
@@ -23,6 +24,10 @@ echo "🐳 Building Frontend Image..."
 docker build --pull -t ${REGISTRY}/${FRONTEND_IMAGE}:${TAG} -f devops/docker/frontend.Dockerfile .
 docker tag ${REGISTRY}/${FRONTEND_IMAGE}:${TAG} ${REGISTRY}/${FRONTEND_IMAGE}:latest
 
+echo "🐳 Building Ml Image..."
+docker build --pull -t ${REGISTRY}/${ML_IMAGE}:${TAG} -f devops/docker/ml-engine.Dockerfile .
+docker tag ${REGISTRY}/${ML_IMAGE}:${TAG} ${REGISTRY}/${ML_IMAGE}:latest
+
 echo "📦 Built Images:"
 docker images | grep cloudguard
 
@@ -32,6 +37,9 @@ docker push ${REGISTRY}/${BACKEND_IMAGE}:latest
 
 docker push ${REGISTRY}/${FRONTEND_IMAGE}:${TAG}
 docker push ${REGISTRY}/${FRONTEND_IMAGE}:latest
+
+docker push ${REGISTRY}/${ML_IMAGE}:${TAG}
+docker push ${REGISTRY}/${ML_IMAGE}:latest
 
 
 echo "✅ CI Build completed"

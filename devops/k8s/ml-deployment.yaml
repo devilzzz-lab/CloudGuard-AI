@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - name: ml
-        image: nginx
+        image: devilzzz/ml-engine:latest   # 🔥 CHANGE THIS
         ports:
-        - containerPort: 5000
+        - containerPort: 8000              # must match your app
         resources:
           requests:
             memory: "128Mi"

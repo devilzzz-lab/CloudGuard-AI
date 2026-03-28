@@ -8,5 +8,5 @@ spec:
     app: cloudguard-ml
   ports:
   - port: 80
-    targetPort: 5000
+    targetPort: 8000
   type: ClusterIP
