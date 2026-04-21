@@ -118,8 +118,7 @@ kubectl rollout status deployment/backend-api -n cloudguard</pre>
 <p>All CloudGuard AI services run inside a <strong>Kubernetes cluster</strong> created using <strong>KIND (Kubernetes IN Docker)</strong>.</p>
 
 <h3>Namespace Structure</h3>
-<pre>cloudguard    # Application services
-monitoring    # Observability stack</pre>
+<pre>cloudguard    # Application services</pre>
 
 <h3>Services Deployed</h3>
 <table>
