@@ -104,7 +104,7 @@
 
 <hr>
 
-<h3>🟧 PHASE 4 — Machine Learning Intelligence Layer ⏳ PLANNED</h3>
+<h3>🟧 PHASE 4 — Machine Learning Intelligence Layer ⏳ Pending</h3>
 <p><strong>Owner:</strong> ML Engineer (Thilakpriyan)</p>
 
 <p><strong>Objectives:</strong></p>
@@ -120,6 +120,8 @@
     <li>Anomaly detection logic</li>
     <li>API for ML insights</li>
 </ul>
+
+<p>✅ <a href="ml-engine/README.md">Phase 4 Pending</a></p>
 
 <hr>
 
