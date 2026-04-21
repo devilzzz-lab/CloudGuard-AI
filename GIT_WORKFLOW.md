@@ -80,7 +80,7 @@
 <h3>🔹 DevOps Engineer Workflow (devops branch)</h3>
 <p>Switch to devops branch</p>
 <pre>
-git checkout devops
+git switch devops
 </pre>
 <p>Pull latest changes (important)</p>
 <pre>
@@ -102,7 +102,7 @@ git push origin devops
 <h3>🔹 Cloud Security Engineer Workflow (cloud-security branch)</h3>
 <p>Switch to cloud-security branch</p>
 <pre>
-git checkout cloud-security</pre>
+git switch cloud-security</pre>
 <p>Pull latest changes (important)</p>
 <pre>git pull origin cloud-security</pre>
 
@@ -118,10 +118,10 @@ git push origin cloud-security
 
 <h3>🔹 ML Engineer Workflow (ml-engine branch)</h3>
 <pre>
-git checkout ml-engine
+
 git pull origin ml-engine
 </pre>
-
+git switch ml-engine
 <p>
 Work on ml-engine/
 (preprocessing, models, APIs)</p>
@@ -134,7 +134,7 @@ git push origin ml-engine
 
 <h3>🔹 MERN Developer Workflow (mern-app branch)</h3>
 <pre>
-git checkout mern-app
+git switch mern-app
 git pull origin mern-app
 </pre>
 
