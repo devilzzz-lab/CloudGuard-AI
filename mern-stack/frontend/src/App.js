@@ -4,6 +4,9 @@ import {
   BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid
 } from "recharts";
 
+// ✅ CENTRALIZED BACKEND URL
+const API_BASE = "http://cloudguard-backend:3001";
+
 function App() {
   const [violations, setViolations] = useState([]);
   const [spikes, setSpikes] = useState([]);
@@ -11,9 +14,8 @@ function App() {
   const [pods, setPods] = useState([]);
   const [logs, setLogs] = useState("");
   const [selectedPod, setSelectedPod] = useState("");
-  const [metrics, setMetrics] = useState([]); // ✅ FIXED
+  const [metrics, setMetrics] = useState([]);
 
-  // ✅ SINGLE auto refresh
   useEffect(() => {
     getPods();
     getMetrics();
@@ -26,9 +28,10 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
+  // 🔹 PODS
   const getPods = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/api/devops/pods");
+      const res = await axios.get(`${API_BASE}/api/devops/pods`);
       setPods(res.data);
 
       res.data.forEach(p => {
@@ -38,13 +41,14 @@ function App() {
       });
 
     } catch (err) {
-      console.error(err);
+      console.error("Pods Error:", err.message);
     }
   };
 
+  // 🔹 METRICS
   const getMetrics = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/api/devops/metrics");
+      const res = await axios.get(`${API_BASE}/api/devops/metrics`);
 
       const formatted = res.data.map(m => ({
         name: m.name,
@@ -54,50 +58,54 @@ function App() {
 
       setMetrics(formatted);
     } catch (err) {
-      console.error(err);
+      console.error("Metrics Error:", err.message);
     }
   };
 
+  // 🔹 LOGS
   const getLogs = async (podName) => {
     try {
       const res = await axios.get(
-        `http://localhost:3001/api/devops/logs/${podName}`
+        `${API_BASE}/api/devops/logs/${podName}`
       );
       setLogs(res.data.logs);
       setSelectedPod(podName);
     } catch (err) {
-      console.error(err);
+      console.error("Logs Error:", err.message);
     }
   };
 
+  // 🔹 STATUS COLOR
   const getColor = (status) => {
     if (status === "Running") return "green";
     if (status === "Pending") return "orange";
     return "red";
   };
 
+  // 🔹 HEALTH
   const checkHealth = async () => {
     try {
-      const res = await axios.get("http://localhost:3001/api/health");
+      const res = await axios.get(`${API_BASE}/api/health`);
       setStatus(res.data.status);
     } catch {
       setStatus("Backend Down ❌");
     }
   };
 
+  // 🔹 ML
   const runML = async () => {
     try {
-      const logsRes = await axios.get("http://localhost:3001/api/ml/logs");
+      const logsRes = await axios.get(`${API_BASE}/api/ml/logs`);
 
       const res = await axios.post(
-        "http://localhost:3001/api/ml/analyze",
+        `${API_BASE}/api/ml/analyze`,
         logsRes.data
       );
 
       setViolations(res.data.repeated_violations || []);
       setSpikes(res.data.remediation_spikes || []);
     } catch (err) {
-      console.error(err);
+      console.error("ML Error:", err.message);
     }
   };
 
@@ -151,7 +159,7 @@ function App() {
         </div>
       )}
 
-      {/* 📊 CPU */}
+      {/* CPU */}
       <h2>📊 CPU Usage</h2>
       <BarChart width={600} height={300} data={metrics}>
         <CartesianGrid strokeDasharray="3 3" />
@@ -161,7 +169,7 @@ function App() {
         <Bar dataKey="cpu" />
       </BarChart>
 
-      {/* 💾 Memory */}
+      {/* Memory */}
       <h2>💾 Memory Usage</h2>
       <BarChart width={600} height={300} data={metrics}>
         <CartesianGrid strokeDasharray="3 3" />
