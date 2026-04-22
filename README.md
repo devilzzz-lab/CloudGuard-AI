@@ -137,7 +137,7 @@
 
 <hr>
 
-<h3>🟥 Phase 5 — MERN Application (Product Layer) &nbsp;⏳ Progress</h3>
+<h3>🟥 Phase 5 — MERN Application (Product Layer) &nbsp;✅ Completed</h3>
 
 <p><strong>Owner:</strong> Srimathi (MERN stack developer)</p>
 
@@ -150,7 +150,7 @@
 <p><strong>Frontend (React):</strong>Dashboard, alerts<br>
 <strong>Backend (Node):</strong>APIs</p>
 
-<p>⏳ <a href="mern-stack/README.md">View Phase 5 docs</a></p>
+<p>✅ <a href="mern-stack/README.md">View Phase 5 docs</a></p>
 
 <hr>
 
