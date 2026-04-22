@@ -1,69 +1,73 @@
 const express = require("express");
 const router = express.Router();
-const { exec } = require("child_process");
+const k8s = require("@kubernetes/client-node");
 
-// 🔹 Get Pods (enhanced)
-router.get("/pods", (req, res) => {
-  exec("kubectl get pods -n cloudguard -o json", (err, stdout, stderr) => {
-    if (err) {
-      return res.status(500).json({ error: stderr });
-    }
+// ✅ Load Kubernetes config (works both local + in-cluster)
+const kc = new k8s.KubeConfig();
 
-    try {
-      const data = JSON.parse(stdout);
+if (process.env.KUBERNETES_SERVICE_HOST) {
+  kc.loadFromCluster();   // inside Kubernetes
+} else {
+  kc.loadFromDefault();   // local testing
+}
 
-      const pods = data.items.map(pod => ({
-        name: pod.metadata.name,
-        status: pod.status.phase,
-        restarts: pod.status.containerStatuses?.[0]?.restartCount || 0,
-        node: pod.spec.nodeName
-      }));
+const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
+const log = new k8s.Log(kc);
 
-      res.json(pods);
-    } catch {
-      res.status(500).json({ error: "Parse error" });
-    }
-  });
+// 🔹 Get Pods (NO kubectl)
+router.get("/pods", async (req, res) => {
+  try {
+    const response = await k8sApi.listNamespacedPod("cloudguard");
+
+    const pods = response.body.items.map((pod) => ({
+      name: pod.metadata.name,
+      status: pod.status.phase,
+      restarts:
+        pod.status.containerStatuses?.[0]?.restartCount || 0,
+      node: pod.spec.nodeName,
+    }));
+
+    res.json(pods);
+  } catch (err) {
+    console.error("Pods Error:", err.message);
+    res.status(500).json({ error: err.message });
+  }
 });
 
-// 🔹 Get Logs
-router.get("/logs/:pod", (req, res) => {
+// 🔹 Get Logs (NO kubectl)
+router.get("/logs/:pod", async (req, res) => {
   const podName = req.params.pod;
 
-  exec(`kubectl logs ${podName} -n cloudguard`, (err, stdout, stderr) => {
-    if (err) {
-      return res.status(500).json({ error: stderr });
-    }
+  try {
+    let logsData = "";
 
-    res.json({ logs: stdout });
-  });
+    await log.log(
+      "cloudguard",   // namespace
+      podName,
+      "",             // container (empty = first)
+      (chunk) => {
+        logsData += chunk;
+      },
+      { follow: false }
+    );
+
+    res.json({ logs: logsData });
+  } catch (err) {
+    console.error("Logs Error:", err.message);
+    res.status(500).json({ error: err.message });
+  }
 });
 
-
-router.get("/metrics", (req, res) => {
-  exec("kubectl top pods -n cloudguard --no-headers", (err, stdout, stderr) => {
-    if (err) {
-      return res.status(500).json({ error: stderr });
-    }
-
-    try {
-      const lines = stdout.trim().split("\n");
-
-      const metrics = lines.map(line => {
-        const parts = line.split(/\s+/);
-
-        return {
-          name: parts[0],
-          cpu: parts[1],     // e.g. 5m
-          memory: parts[2]   // e.g. 20Mi
-        };
-      });
-
-      res.json(metrics);
-    } catch {
-      res.status(500).json({ error: "Parse error" });
-    }
-  });
+// 🔹 Get Metrics (TEMP SAFE VERSION)
+router.get("/metrics", async (req, res) => {
+  try {
+    // ⚠️ Metrics-server not configured → return empty
+    // We will fix this later properly
+    res.json([]);
+  } catch (err) {
+    console.error("Metrics Error:", err.message);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 module.exports = router;

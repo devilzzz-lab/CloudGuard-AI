@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const ML_API_URL = "http://127.0.0.1:8000/ml/anomalies";
+const ML_API_URL = "http://ml-service:80/ml/anomalies";
 
 async function getAnomalies(logs) {
   try {
