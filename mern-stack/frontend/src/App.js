@@ -1,19 +1,79 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {
+  BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid
+} from "recharts";
 
 function App() {
   const [violations, setViolations] = useState([]);
   const [spikes, setSpikes] = useState([]);
   const [status, setStatus] = useState("Not Checked");
   const [pods, setPods] = useState([]);
+  const [logs, setLogs] = useState("");
+  const [selectedPod, setSelectedPod] = useState("");
+  const [metrics, setMetrics] = useState([]); // ✅ FIXED
+
+  // ✅ SINGLE auto refresh
+  useEffect(() => {
+    getPods();
+    getMetrics();
+
+    const interval = setInterval(() => {
+      getPods();
+      getMetrics();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const getPods = async () => {
     try {
       const res = await axios.get("http://localhost:3001/api/devops/pods");
       setPods(res.data);
+
+      res.data.forEach(p => {
+        if (p.restarts > 3) {
+          console.warn(`⚠️ Pod ${p.name} restarting too much`);
+        }
+      });
+
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const getMetrics = async () => {
+    try {
+      const res = await axios.get("http://localhost:3001/api/devops/metrics");
+
+      const formatted = res.data.map(m => ({
+        name: m.name,
+        cpu: parseInt(m.cpu.replace("m", "")),
+        memory: parseInt(m.memory.replace("Mi", ""))
+      }));
+
+      setMetrics(formatted);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const getLogs = async (podName) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:3001/api/devops/logs/${podName}`
+      );
+      setLogs(res.data.logs);
+      setSelectedPod(podName);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const getColor = (status) => {
+    if (status === "Running") return "green";
+    if (status === "Pending") return "orange";
+    return "red";
   };
 
   const checkHealth = async () => {
@@ -45,25 +105,72 @@ function App() {
     <div style={{ padding: "20px", fontFamily: "Arial" }}>
       <h1>🚀 CloudGuard AI Dashboard</h1>
 
-      {/* Backend Health */}
       <button onClick={checkHealth}>Check Backend</button>
       <p>Status: {status}</p>
 
-      {/* Kubernetes Pods */}
-      <button onClick={getPods}>Check Kubernetes Pods</button>
+      <h2>☸️ Kubernetes Pods (Auto Refresh)</h2>
 
-      <h2>☸️ Kubernetes Pods</h2>
       {pods.length === 0 ? (
         <p>No data</p>
       ) : (
-        pods.map((p, i) => (
-          <p key={p.name || i}>
-            {p.name} → {p.status}
-          </p>
+        pods.map((p) => (
+          <div
+            key={p.name}
+            style={{
+              border: "1px solid #ccc",
+              padding: "10px",
+              marginBottom: "10px",
+              borderLeft: `6px solid ${getColor(p.status)}`
+            }}
+          >
+            <strong>{p.name}</strong> <br />
+            Status: {p.status} <br />
+            Restarts: {p.restarts} <br />
+            Node: {p.node} <br />
+
+            <button onClick={() => getLogs(p.name)}>
+              View Logs
+            </button>
+          </div>
         ))
       )}
 
-      {/* ML Analysis */}
+      {/* Logs */}
+      {selectedPod && (
+        <div style={{ marginTop: "20px" }}>
+          <h3>📜 Logs: {selectedPod}</h3>
+          <pre style={{
+            background: "#000",
+            color: "#0f0",
+            padding: "10px",
+            maxHeight: "300px",
+            overflow: "auto"
+          }}>
+            {logs}
+          </pre>
+        </div>
+      )}
+
+      {/* 📊 CPU */}
+      <h2>📊 CPU Usage</h2>
+      <BarChart width={600} height={300} data={metrics}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Bar dataKey="cpu" />
+      </BarChart>
+
+      {/* 💾 Memory */}
+      <h2>💾 Memory Usage</h2>
+      <BarChart width={600} height={300} data={metrics}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Bar dataKey="memory" />
+      </BarChart>
+
       <button onClick={runML}>Run ML Analysis</button>
 
       <h2>🚨 Repeated Violations</h2>
