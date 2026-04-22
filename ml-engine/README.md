@@ -116,6 +116,60 @@ ml-engine/
 
 <hr>
 
+<h2>▶️ Running the Services</h2>
+
+<h3>Start Backend</h3>
+<pre>
+cd mern-stack/backend
+node server.js
+</pre>
+
+<h3>Start ML Engine</h3>
+<pre>
+cd ml-engine
+uvicorn app:app --reload
+</pre>
+
+<hr>
+
+<h2>🧪 Testing APIs</h2>
+
+<h3>1️⃣ Test Backend Health</h3>
+<pre>
+curl http://localhost:3001/api/health
+</pre>
+
+<p><strong>Expected Output:</strong></p>
+<pre>
+{"status":"CloudGuard Backend Running","service":"backend"}
+</pre>
+
+<h3>2️⃣ Test ML — Repeated Violation</h3>
+<pre>
+curl -X POST http://localhost:3001/api/ml/analyze \
+-H "Content-Type: application/json" \
+-d '[
+  {"resource_id":"sg-1","event_type":"violation","timestamp":"2026-04-22T10:00:00"},
+  {"resource_id":"sg-1","event_type":"violation","timestamp":"2026-04-22T10:01:00"},
+  {"resource_id":"sg-1","event_type":"violation","timestamp":"2026-04-22T10:02:00"}
+]'
+</pre>
+
+<h3>3️⃣ Test ML — Remediation Spike</h3>
+<pre>
+curl -X POST http://localhost:3001/api/ml/analyze \
+-H "Content-Type: application/json" \
+-d '[
+  {"resource_id":"sg-1","event_type":"remediation","timestamp":"2026-04-22T10:00:00"},
+  {"resource_id":"sg-2","event_type":"remediation","timestamp":"2026-04-22T10:01:00"},
+  {"resource_id":"sg-3","event_type":"remediation","timestamp":"2026-04-22T10:02:00"},
+  {"resource_id":"sg-4","event_type":"remediation","timestamp":"2026-04-22T10:03:00"},
+  {"resource_id":"sg-5","event_type":"remediation","timestamp":"2026-04-22T10:04:00"}
+]'
+</pre>
+
+<hr>
+
 <h2>⚙️ Technologies Used</h2>
 
 <ul>

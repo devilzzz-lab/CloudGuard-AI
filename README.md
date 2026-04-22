@@ -95,7 +95,7 @@
 
 <hr>
 
-<h3>🟨 Phase 3 — DevOps Automation &amp; Platform Setup &nbsp;🔄 In Progress</h3>
+<h3>🟨 Phase 3 — DevOps Automation &amp; Platform Setup &nbsp;✅ Completed</h3>
 
 <p><strong>Owner:</strong> Sriram (DevOps engineer)</p>
 
@@ -112,11 +112,11 @@
   <li>Kubernetes deployment (KIND)</li>
 </ul>
 
-<p>🔄 <a href="devops/README.md">View Phase 3 docs</a></p>
+<p>✅ <a href="devops/README.md">View Phase 3 docs</a></p>
 
 <hr>
 
-<h3>🟧 Phase 4 — Machine Learning Intelligence Layer &nbsp;⏳ Pending</h3>
+<h3>🟧 Phase 4 — Machine Learning Intelligence Layer &nbsp;✅ Completed</h3>
 
 <p><strong>Owner:</strong> Thilakpriyan (ML engineer)</p>
 
@@ -134,7 +134,7 @@
   <li>API for ML insights</li>
 </ul>
 
-<p>⏳ <a href="ml-engine/README.md">View Phase 4 docs</a></p>
+<p>✅ <a href="ml-engine/README.md">View Phase 4 docs</a></p>
 
 <hr>
 

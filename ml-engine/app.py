@@ -1,11 +1,11 @@
 from fastapi import FastAPI
+from routes import router
 
-app = FastAPI()
+app = FastAPI(title="CloudGuard ML Engine")
 
-@app.get("/health")
-def health():
-    return {"status": "ML service running"}
+app.include_router(router)
 
-@app.get("/predict")
-def predict():
-    return {"prediction": "dummy"}
+
+@app.get("/")
+def root():
+    return {"message": "ML Engine Running"}
