@@ -15,24 +15,26 @@ if (process.env.KUBERNETES_SERVICE_HOST) {
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 const log = new k8s.Log(kc);
 
-// 🔹 Get Pods ✅ FIXED
+// 🔹 Get Pods ✅ FINAL FIX
 router.get("/pods", async (req, res) => {
   try {
-    const response = await k8sApi.listNamespacedPod({
-      namespace: "cloudguard"
-    });
+    // ✅ Use STRING (not object)
+    const response = await k8sApi.listNamespacedPod("cloudguard");
 
-    const pods = response.body.items.map((pod) => ({
-      name: pod.metadata.name,
-      status: pod.status.phase,
+    // ✅ Handle both possible formats safely
+    const items = response.items || response.body?.items || [];
+
+    const pods = items.map((pod) => ({
+      name: pod.metadata?.name,
+      status: pod.status?.phase,
       restarts:
-        pod.status.containerStatuses?.[0]?.restartCount || 0,
-      node: pod.spec.nodeName,
+        pod.status?.containerStatuses?.[0]?.restartCount || 0,
+      node: pod.spec?.nodeName,
     }));
 
     res.json(pods);
   } catch (err) {
-    console.error("Pods Error:", err);
+    console.error("Pods Error FULL:", err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -61,7 +63,7 @@ router.get("/logs/:pod", async (req, res) => {
   }
 });
 
-// 🔹 Metrics (safe for now)
+// 🔹 Metrics
 router.get("/metrics", async (req, res) => {
   res.json([]);
 });
