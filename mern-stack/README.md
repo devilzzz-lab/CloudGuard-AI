@@ -149,24 +149,10 @@ cd ml-engine
 uvicorn app:app --reload
 </pre>
 
-<hr>
-
-<h2>🧪 Testing APIs</h2>
-
-<h3>1️⃣ Backend Health Check</h3>
+<h3>Start Frontend</h3>
 <pre>
-curl http://localhost:3001/api/health
-</pre>
-
-<h3>2️⃣ Test ML Integration</h3>
-<pre>
-curl -X POST http://localhost:3001/api/ml/analyze \
--H "Content-Type: application/json" \
--d '[
-  {"resource_id":"sg-1","event_type":"violation","timestamp":"2026-04-22T10:00:00"},
-  {"resource_id":"sg-1","event_type":"violation","timestamp":"2026-04-22T10:01:00"},
-  {"resource_id":"sg-1","event_type":"violation","timestamp":"2026-04-22T10:02:00"}
-]'
+cd mern-stack/frontend
+npm start
 </pre>
 
 <hr>

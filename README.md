@@ -129,7 +129,6 @@
 <p><strong>Implementations:</strong></p>
 <ul>
   <li>Log preprocessing</li>
-  <li>Metric ingestion</li>
   <li>Anomaly detection logic</li>
   <li>API for ML insights</li>
 </ul>
@@ -148,8 +147,8 @@
   <li>Secure access to platform features</li>
 </ul>
 
-<p><strong>Frontend (React):</strong> Login, dashboard, alerts<br>
-<strong>Backend (Node):</strong> JWT, RBAC, APIs, MongoDB</p>
+<p><strong>Frontend (React):</strong>Dashboard, alerts<br>
+<strong>Backend (Node):</strong>APIs</p>
 
 <p>⏳ <a href="mern-stack/README.md">View Phase 5 docs</a></p>
 
@@ -163,8 +162,7 @@
 <ul>
   <li>Public S3 bucket → auto-blocked</li>
   <li>Open security group → auto-removed</li>
-  <li>Pipeline failure → alert triggered</li>
-  <li>Abnormal metrics → flagged by ML</li>
+  <li>Abnormal detection logic8 → flagged by ML</li>
 </ul>
 
 <hr>
@@ -229,7 +227,7 @@
     </tr>
     <tr>
       <td>Dashboard</td>
-      <td>MERN + JWT + RBAC</td>
+      <td>MERN</td>
     </tr>
   </tbody>
 </table>
