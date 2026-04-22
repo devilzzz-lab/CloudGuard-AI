@@ -3,9 +3,7 @@ import * as k8s from "@kubernetes/client-node";
 
 const router = express.Router();
 
-// ✅ Load Kubernetes config
 const kc = new k8s.KubeConfig();
-
 if (process.env.KUBERNETES_SERVICE_HOST) {
   kc.loadFromCluster();
 } else {
@@ -15,21 +13,24 @@ if (process.env.KUBERNETES_SERVICE_HOST) {
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 const log = new k8s.Log(kc);
 
-// 🔹 Get Pods ✅ FINAL FIX
 // 🔹 Get Pods
 router.get("/pods", async (req, res) => {
   try {
-    const response = await k8sApi.listNamespacedPod("cloudguard"); // ← string, not object
-    
-    const items = response.body?.items || [];
+    const response = await k8sApi.listNamespacedPod({ namespace: "cloudguard" });
+
+    // ✅ v1.4+ returns data directly, NOT under response.body
+    const items = response.items ?? [];
+
     const pods = items.map((pod) => ({
       name: pod.metadata?.name,
       status: pod.status?.phase,
-      restarts: pod.status?.containerStatuses?.[0]?.restartCount || 0,
+      restarts: pod.status?.containerStatuses?.[0]?.restartCount ?? 0,
       node: pod.spec?.nodeName,
     }));
-    
+
+    console.log("✅ Pods fetched:", pods.length);
     res.json(pods);
+
   } catch (err) {
     console.error("Pods Error FULL:", err);
     res.status(500).json({ error: err.message });
@@ -39,19 +40,22 @@ router.get("/pods", async (req, res) => {
 // 🔹 Logs
 router.get("/logs/:pod", async (req, res) => {
   const podName = req.params.pod;
-
   try {
     let logsData = "";
 
-    await log.log(
-      "cloudguard",
-      podName,
-      "",
-      (chunk) => {
-        logsData += chunk;
-      },
-      { follow: false }
-    );
+    await new Promise((resolve, reject) => {
+      log.log(
+        "cloudguard",
+        podName,
+        "",
+        (chunk) => { logsData += chunk; },
+        { follow: false },
+        (err) => {
+          if (err) reject(err);
+          else resolve();
+        }
+      );
+    });
 
     res.json({ logs: logsData });
   } catch (err) {
