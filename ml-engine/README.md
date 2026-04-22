@@ -10,40 +10,36 @@
 
 <h2>Overview</h2>
 <p>
-Phase 4 introduces the <strong>Machine Learning Intelligence Layer</strong> for the CloudGuard AI platform.
-This layer focuses on analyzing <strong>cloud security events, remediation logs, and DevOps pipeline activity</strong>
-to detect abnormal patterns and provide intelligent insights.
+Phase 4 implements a lightweight <strong>Machine Learning Intelligence Layer</strong> 
+for CloudGuard AI. This layer analyzes cloud security events and remediation logs 
+to detect abnormal patterns.
 </p>
 
 <p>
-Unlike traditional monitoring systems, this ML layer does not rely on system metrics such as CPU or memory.
-Instead, it acts as a <strong>Security Intelligence Engine</strong> that identifies suspicious behavior,
-repeated violations, and operational anomalies.
+The focus is on identifying repeated security violations and unusual spikes in 
+auto-remediation activity, enabling quick detection of misconfigurations or 
+suspicious behavior.
 </p>
 
 <hr>
 
 <h2>🎯 Objectives</h2>
 <ul>
-  <li>Analyze cloud security violations and remediation activity</li>
-  <li>Detect abnormal patterns in infrastructure behavior</li>
-  <li>Identify repeated or suspicious security misconfigurations</li>
-  <li>Monitor DevOps pipeline failures and unusual activity</li>
-  <li>Provide real-time anomaly insights via APIs</li>
+  <li>Analyze security violation logs</li>
+  <li>Detect repeated violations for the same resource</li>
+  <li>Identify sudden spikes in remediation activity</li>
+  <li>Provide simple anomaly insights via API</li>
 </ul>
 
 <hr>
 
 <h2>🧠 ML Architecture</h2>
 <pre>
-Cloud Events / Logs
-(S3, Security Groups, Pipeline Logs)
+Cloud Logs (S3 / Security Groups)
         ↓
-Preprocessing Layer
+Preprocessing
         ↓
-Feature Extraction
-        ↓
-Anomaly Detection Engine
+Simple Detection Logic
         ↓
 ML API (FastAPI)
         ↓
@@ -52,63 +48,35 @@ Backend (Phase 5)
 Frontend Dashboard
 </pre>
 
-<p>
-This architecture enables continuous analysis of security and operational events,
-allowing the platform to detect threats and anomalies proactively.
-</p>
-
 <hr>
 
 <h2>⚙️ Core Components</h2>
 
-<h3>🔹 1. Data Preprocessing</h3>
+<h3>🔹 1. Preprocessing</h3>
 <p>
-Raw logs from AWS services and DevOps pipelines are cleaned and structured
-into a consistent format for analysis.
+Parses and structures incoming logs into a usable format.
 </p>
 
 <ul>
-  <li>Parsing Lambda logs (S3 and Security Group remediation)</li>
-  <li>Processing DevOps pipeline logs (Jenkins / Kubernetes)</li>
-  <li>Structuring event-based data</li>
+  <li>Extract resource ID</li>
+  <li>Extract event type</li>
+  <li>Extract timestamp</li>
 </ul>
 
-<h3>🔹 2. Feature Engineering</h3>
+<h3>🔹 2. Detection Logic</h3>
 <p>
-Relevant features are extracted to represent behavior patterns across the system.
+Implements simple rule-based anomaly detection.
 </p>
 
 <ul>
-  <li>Violation frequency per resource</li>
-  <li>Remediation count over time</li>
-  <li>Pipeline failure frequency</li>
-  <li>User or system action patterns</li>
+  <li><strong>Repeated Violations:</strong> Same resource flagged multiple times</li>
+  <li><strong>Remediation Spike:</strong> High number of fixes in short time</li>
 </ul>
 
-<h3>🔹 3. Anomaly Detection Engine</h3>
+<h3>🔹 3. ML API</h3>
 <p>
-The ML Engine identifies unusual patterns that may indicate security risks,
-misconfigurations, or abnormal operations.
+FastAPI service that returns anomaly results.
 </p>
-
-<ul>
-  <li>Repeated security violations</li>
-  <li>Sudden spikes in remediation activity</li>
-  <li>Frequent DevOps pipeline failures</li>
-  <li>Unusual or suspicious action patterns</li>
-</ul>
-
-<h3>🔹 4. ML API Layer</h3>
-<p>
-A FastAPI-based service exposes endpoints that deliver anomaly insights
-to the backend layer.
-</p>
-
-<ul>
-  <li>Real-time anomaly detection results</li>
-  <li>Structured insights for frontend visualization</li>
-  <li>Integration with MERN backend APIs</li>
-</ul>
 
 <hr>
 
@@ -116,12 +84,12 @@ to the backend layer.
 
 <pre>
 ml-engine/
-├── app.py             # FastAPI application entry point
-├── routes.py          # API routes for ML insights
-├── preprocess.py      # Log parsing and preprocessing logic
-├── model.py           # Anomaly detection logic
-├── model/             # Saved models / artifacts
-├── requirements.txt   # Dependencies
+├── app.py
+├── routes.py
+├── preprocess.py
+├── model.py
+├── model/
+├── requirements.txt
 └── README.md
 </pre>
 
@@ -130,45 +98,75 @@ ml-engine/
 <h2>🔄 ML Workflow</h2>
 
 <pre>
-1. Receive cloud events and logs
-2. Preprocess and structure data
-3. Extract behavior-based features
-4. Apply anomaly detection logic
-5. Identify abnormal patterns
-6. Return insights via API
+1. Receive logs
+2. Preprocess data
+3. Apply detection rules
+4. Identify anomalies
+5. Return results via API
 </pre>
-
-<hr>
-
-<h2>🔗 Integration with Platform</h2>
-
-<pre>
-DevOps Layer (Phase 3)
-        ↓
-ML Engine (Phase 4)
-        ↓
-Backend API (Phase 5)
-        ↓
-Frontend Dashboard
-</pre>
-
-<ul>
-  <li>Consumes logs from AWS remediation and DevOps pipelines</li>
-  <li>Provides anomaly insights to backend APIs</li>
-  <li>Enables real-time alert visualization in frontend</li>
-</ul>
 
 <hr>
 
 <h2>📊 Key Use Cases</h2>
 
 <ul>
-  <li><strong>Repeated Security Violations:</strong> Detect resources that repeatedly become non-compliant</li>
-  <li><strong>Remediation Spike Detection:</strong> Identify sudden increase in auto-remediation events</li>
-  <li><strong>Pipeline Failure Patterns:</strong> Detect repeated failures in CI/CD pipelines</li>
-  <li><strong>Suspicious Action Behavior:</strong> Identify unusual or excessive system/user actions</li>
-  <li><strong>Time-Based Anomalies:</strong> Detect unusual activity during unexpected time periods</li>
+  <li><strong>Repeated Security Violations:</strong> Same resource becoming insecure multiple times</li>
+  <li><strong>Remediation Spike Detection:</strong> Sudden increase in auto-fix actions</li>
 </ul>
+
+<hr>
+
+<h2>▶️ Running the Services</h2>
+
+<h3>Start Backend</h3>
+<pre>
+cd mern-stack/backend
+node server.js
+</pre>
+
+<h3>Start ML Engine</h3>
+<pre>
+cd ml-engine
+uvicorn app:app --reload
+</pre>
+
+<hr>
+
+<h2>🧪 Testing APIs</h2>
+
+<h3>1️⃣ Test Backend Health</h3>
+<pre>
+curl http://localhost:3001/api/health
+</pre>
+
+<p><strong>Expected Output:</strong></p>
+<pre>
+{"status":"CloudGuard Backend Running","service":"backend"}
+</pre>
+
+<h3>2️⃣ Test ML — Repeated Violation</h3>
+<pre>
+curl -X POST http://localhost:3001/api/ml/analyze \
+-H "Content-Type: application/json" \
+-d '[
+  {"resource_id":"sg-1","event_type":"violation","timestamp":"2026-04-22T10:00:00"},
+  {"resource_id":"sg-1","event_type":"violation","timestamp":"2026-04-22T10:01:00"},
+  {"resource_id":"sg-1","event_type":"violation","timestamp":"2026-04-22T10:02:00"}
+]'
+</pre>
+
+<h3>3️⃣ Test ML — Remediation Spike</h3>
+<pre>
+curl -X POST http://localhost:3001/api/ml/analyze \
+-H "Content-Type: application/json" \
+-d '[
+  {"resource_id":"sg-1","event_type":"remediation","timestamp":"2026-04-22T10:00:00"},
+  {"resource_id":"sg-2","event_type":"remediation","timestamp":"2026-04-22T10:01:00"},
+  {"resource_id":"sg-3","event_type":"remediation","timestamp":"2026-04-22T10:02:00"},
+  {"resource_id":"sg-4","event_type":"remediation","timestamp":"2026-04-22T10:03:00"},
+  {"resource_id":"sg-5","event_type":"remediation","timestamp":"2026-04-22T10:04:00"}
+]'
+</pre>
 
 <hr>
 
@@ -177,8 +175,6 @@ Frontend Dashboard
 <ul>
   <li>Python</li>
   <li>FastAPI</li>
-  <li>NumPy / Pandas</li>
-  <li>Scikit-learn (Anomaly Detection)</li>
 </ul>
 
 <hr>
@@ -187,7 +183,7 @@ Frontend Dashboard
 
 <blockquote>
   <p>
-  <strong>Phase 4 implements a security-focused ML intelligence layer that analyzes cloud events and DevOps activity to detect anomalies and provide real-time insights for CloudGuard AI.</strong>
+  <strong>Phase 4 implements a lightweight ML layer that detects repeated security violations and remediation spikes using simple rule-based logic.</strong>
   </p>
 </blockquote>
 
