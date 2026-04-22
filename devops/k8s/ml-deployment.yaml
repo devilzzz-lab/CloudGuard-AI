@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudguard-ml
+  namespace: cloudguard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudguard-ml
+  template:
+    metadata:
+      labels:
+        app: cloudguard-ml
+    spec:
+      containers:
+      - name: ml
+        image: devilzzz/ml-engine:latest   # 🔥 CHANGE THIS
+        ports:
+        - containerPort: 8000              # must match your app
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
