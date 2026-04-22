@@ -16,22 +16,19 @@ const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 const log = new k8s.Log(kc);
 
 // 🔹 Get Pods ✅ FINAL FIX
+// 🔹 Get Pods
 router.get("/pods", async (req, res) => {
   try {
-    // ✅ Use STRING (not object)
-    const response = await k8sApi.listNamespacedPod("cloudguard");
-
-    // ✅ Handle both possible formats safely
-    const items = response.items || response.body?.items || [];
-
+    const response = await k8sApi.listNamespacedPod("cloudguard"); // ← string, not object
+    
+    const items = response.body?.items || [];
     const pods = items.map((pod) => ({
       name: pod.metadata?.name,
       status: pod.status?.phase,
-      restarts:
-        pod.status?.containerStatuses?.[0]?.restartCount || 0,
+      restarts: pod.status?.containerStatuses?.[0]?.restartCount || 0,
       node: pod.spec?.nodeName,
     }));
-
+    
     res.json(pods);
   } catch (err) {
     console.error("Pods Error FULL:", err);
