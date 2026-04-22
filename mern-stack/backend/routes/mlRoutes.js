@@ -1,6 +1,7 @@
-const express = require("express");
+import express from "express";
+import { getAnomalies } from "../services/mlService.js";
+
 const router = express.Router();
-const { getAnomalies } = require("../services/mlService");
 
 router.post("/analyze", async (req, res) => {
   const logs = req.body;
@@ -11,7 +12,6 @@ router.post("/analyze", async (req, res) => {
 });
 
 router.get("/logs", (req, res) => {
-  // simulate logs coming from AWS / DevOps
   const logs = [
     { resource_id: "sg-1", event_type: "violation", timestamp: "2026-04-22T10:00:00" },
     { resource_id: "sg-1", event_type: "violation", timestamp: "2026-04-22T10:01:00" },
@@ -26,4 +26,4 @@ router.get("/logs", (req, res) => {
   res.json(logs);
 });
 
-module.exports = router;
+export default router;

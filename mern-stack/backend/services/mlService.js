@@ -1,8 +1,8 @@
-const axios = require("axios");
+import axios from "axios";
 
 const ML_API_URL = "http://ml-service:80/ml/anomalies";
 
-async function getAnomalies(logs) {
+export async function getAnomalies(logs) {
   try {
     const response = await axios.post(ML_API_URL, logs);
     return response.data;
@@ -11,5 +11,3 @@ async function getAnomalies(logs) {
     return { error: "ML service failed" };
   }
 }
-
-module.exports = { getAnomalies };

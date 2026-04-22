@@ -2,6 +2,7 @@
   "name": "cloudguard-backend",
   "version": "1.0.0",
   "main": "server.js",
+  "type": "module",
   "dependencies": {
     "@kubernetes/client-node": "^1.4.0",
     "axios": "^1.15.2",

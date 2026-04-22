@@ -1,20 +1,21 @@
-const express = require("express");
-const router = express.Router();
-const k8s = require("@kubernetes/client-node");
+import express from "express";
+import * as k8s from "@kubernetes/client-node";
 
-// ✅ Load Kubernetes config (works both local + in-cluster)
+const router = express.Router();
+
+// ✅ Load Kubernetes config
 const kc = new k8s.KubeConfig();
 
 if (process.env.KUBERNETES_SERVICE_HOST) {
-  kc.loadFromCluster();   // inside Kubernetes
+  kc.loadFromCluster();
 } else {
-  kc.loadFromDefault();   // local testing
+  kc.loadFromDefault();
 }
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 const log = new k8s.Log(kc);
 
-// 🔹 Get Pods (NO kubectl)
+// 🔹 Get Pods
 router.get("/pods", async (req, res) => {
   try {
     const response = await k8sApi.listNamespacedPod("cloudguard");
@@ -34,7 +35,7 @@ router.get("/pods", async (req, res) => {
   }
 });
 
-// 🔹 Get Logs (NO kubectl)
+// 🔹 Logs
 router.get("/logs/:pod", async (req, res) => {
   const podName = req.params.pod;
 
@@ -42,9 +43,9 @@ router.get("/logs/:pod", async (req, res) => {
     let logsData = "";
 
     await log.log(
-      "cloudguard",   // namespace
+      "cloudguard",
       podName,
-      "",             // container (empty = first)
+      "",
       (chunk) => {
         logsData += chunk;
       },
@@ -58,16 +59,9 @@ router.get("/logs/:pod", async (req, res) => {
   }
 });
 
-// 🔹 Get Metrics (TEMP SAFE VERSION)
+// 🔹 Metrics
 router.get("/metrics", async (req, res) => {
-  try {
-    // ⚠️ Metrics-server not configured → return empty
-    // We will fix this later properly
-    res.json([]);
-  } catch (err) {
-    console.error("Metrics Error:", err.message);
-    res.status(500).json({ error: err.message });
-  }
+  res.json([]);
 });
 
-module.exports = router;
+export default router;
