@@ -5,7 +5,7 @@ import {
 } from "recharts";
 
 // ✅ CENTRALIZED BACKEND URL
-const API_BASE = "http://cloudguard-backend:3001";
+const API_BASE = "http://localhost:3001";
 
 function App() {
   const [violations, setViolations] = useState([]);
