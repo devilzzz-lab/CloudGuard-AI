@@ -14,7 +14,7 @@
 <h2>🔹 High-Level Architecture (Model-1: Single Organization)</h2>
 <p>CloudGuard AI is designed as an <strong>internal enterprise platform</strong> for one organization's cloud environment, following real enterprise modular architecture.</p>
 
-<img src="/diagrams/system-architecture.png" alt="CloudGuard AI Architecture Diagram" width="100%">
+<img src="/diagrams/system-architecture.png" alt="CloudGuard AI Architecture Diagram Test" width="100%">
 
 <p><strong>The architecture flows from top to bottom:</strong></p>
 
